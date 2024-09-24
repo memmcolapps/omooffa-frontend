@@ -5,7 +5,6 @@ const Hero = () => {
     return (
         <section className="bg-[#002E20] relative">
             <MaxContainer>
-                <div className="relative flex px-[10rem] flex-col pt-[9rem] sm:pt-[4rem]">
                     <Image
                         src={'/home/peacock.png'}
                         width={1225}
@@ -34,7 +33,7 @@ const Hero = () => {
                         alt="bg-image"
                         className="z-[0] sm:block opacity-[.5] hidden self-center pointer-events-none h-[55rem] w-[150rem] absolute"
                     />
-
+                <div className="relative flex px-[10rem] flex-col pt-[9rem] sm:pt-[4rem]">
                     <div className="self-center relative  z-[1] mt-[8rem] mb-[14rem] w-[55rem] sm:w-[30rem]">
                         <h1 className="font-[700] text-[5rem] sm:text-[3rem] text-center  text-[#DDFFDA]">Building a brighter future for the ọ́ffà Community</h1>
                         <p className="text-center text-[#DDFFDA] sm:font-[400] mt-[1.7rem]">Designed to strengthen the bond between Offa indigenes, both at home and abroad, while creating a more connected and prosperous community.</p>

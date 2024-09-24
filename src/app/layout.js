@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Manrope } from "next/font/google";
 import Navbar from "./components/common/navbar";
+import Footer from "./components/common/footer";
 
 // Import Manrope from Google Fonts
 const manrope = Manrope({
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
       >
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

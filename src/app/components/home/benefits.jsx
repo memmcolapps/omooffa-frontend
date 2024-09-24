@@ -29,7 +29,7 @@ const Benefits = () => {
     return (
         <section className="bg-[#EFFFEE]">
             <MaxContainer>
-                <div className="px-[7rem] pt-[10rem] pb-[15rem] text-[#002D1F]">
+                <div className="px-[7rem] pt-[10rem] max-w-[130rem] mx-auto pb-[15rem] text-[#002D1F]">
                     <div className="flex flex-col">
                         <h2 className="sub_header_i text-center mb-[5rem]">Benefits</h2>
                         <div className="flex sm:flex-col sm:gap-[3rem] justify-between max-w-[120rem]">

@@ -5,8 +5,8 @@ const Impact = () => {
     return (
         <section className="bg-[#EFFFEE]">
             <MaxContainer>
-                <div className="pt-[5rem] relative px-[7rem] sm:px-[2.5rem] overflow-hidden text-[#355249]">
                     <img src="/home/line_i.png" alt="line" className="w-[100%] top-[-50rem] sm:top-[20rem] h-[118rem] sm:h-[30rem] inset-0 absolute" />
+                <div className="pt-[5rem] relative px-[7rem] sm:px-[2.5rem] max-w-[130rem] mx-auto overflow-hidden text-[#355249]">
                     <div className="flex sm:flex-col items-center justify-between relative overflow-hidden">
                         <div className="w-[50rem] sm:w-auto">
                             <h2 className="sub_header_i mb-[1rem] sm:text-center">Our Impact</h2>

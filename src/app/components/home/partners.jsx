@@ -7,8 +7,8 @@ const Partners = () => {
         <section className="">
             <div className="">
                 <MaxContainer>
-                    <div className=" text-[#B9D5C2] px-[7rem] sm:px-[2.5rem] py-[3rem] relative overflow-hidden">
-                        <img src="/home/line_ii.png" alt="line" className="absolute z-[-1] w-[100%] sm:hidden  inset-0" />
+                    <img src="/home/line_ii.png" alt="line" className="absolute z-[-1] w-[100%] sm:hidden  inset-0" />
+                    <div className=" text-[#B9D5C2] max-w-[130rem] mx-auto px-[7rem] sm:px-[2.5rem] py-[3rem] relative overflow-hidden">
                         <div className="flex sm:flex-col items-center justify-between">
                             <div className="">
                                 <h2 className="sub_header_i">Our Partners</h2>
