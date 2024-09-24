@@ -4,7 +4,7 @@ import PlaceContentBesideImage from "../components/common/placeContentBesideImag
 const Vision = () => {
     const content = {
         title: 'Our Vision',
-        paragraph: 'A united ọ́ffà, where all indigenes are recognized, connected, and contribute to the development of a stronger, more prosperous community.',
+        paragraph: 'To empower ọ́ffà indigenes by providing a secure, digital identity system that strengthens the community, improves public services, & promotes transparency in governance.',
         btnText: 'Help Shape the Future',
         image: '/about/unite.png',
         containerStyle: 'flex-row-reverse'
@@ -21,3 +21,4 @@ const Vision = () => {
 }
  
 export default Vision;
+
