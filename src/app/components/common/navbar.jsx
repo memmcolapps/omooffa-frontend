@@ -23,6 +23,9 @@ const Navbar = () => {
         };
     }, [open]);
 
+    useEffect(() => {
+        setOpen(false)
+    }, [pathName])
     const navItems = [
         {
             link: '/about',
@@ -54,7 +57,7 @@ const Navbar = () => {
                         {navItems.map(item => <li className="" key={item.text}><NavItem navitem={item} /></li>)}
                     </ul>
 
-                    <Button className='font-[700] bg-white text-[#003525] px-[2rem] py-[1.8rem] rounded-[.7rem] sm:hidden'>Contact Us</Button>
+                    <Button className='font-[700] bg-white text-[#003525] px-[2rem] py-[1.8rem] rounded-[.7rem] sm:hidden'>Enroll Now!</Button>
                     <Hamburger open={open} toggleNav={toggleNav} />
                 </div>
             </MaxContainer>
