@@ -107,6 +107,7 @@ li {
 
 .p_i {
   font-size: 1.8rem;
+
   @media screen and (max-width: 640px) {
     font-size: 1.4rem;
   }
@@ -114,4 +115,30 @@ li {
 
 .p_ii {
   font-size: 1.4rem;
+}
+
+/* Remove spinner for WebKit browsers (Chrome, Safari, etc.) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+
+}
+
+
+/* Remove spinner for Firefox */
+
+ input[type="number"] {
+    -moz-appearance: textfield;
+} 
+
+
+.custom {
+  box-shadow: 0px 8px 35.4px 0px #BBCABF38;
+
+}
+
+.custom-placeholder > span {
+  color: #B6B9B8 !important; 
+  font-weight: 600;/* Custom color for placeholder text */
 }

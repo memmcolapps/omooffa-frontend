@@ -2,6 +2,9 @@ import Image from "next/image";
 import MaxContainer from "../common/maxcontainer";
 
 const Sponsors = () => {
+    
+    console.log(process.env.BASE_URL)
+
     return (
         <section className="bg-[#EFFFEE]">
             <MaxContainer>
