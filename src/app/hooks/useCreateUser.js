@@ -3,6 +3,7 @@ import { useState } from "react";
 import useFetchAPI from "./useFetch";
 const UseCreateUser = () => {
     const [loading, setLoading] = useState(false)
+    const [data, setData] = useState('')
     const { useFetch } = useFetchAPI()
 
     const CreateUser = async (formData) => {
@@ -18,7 +19,7 @@ const UseCreateUser = () => {
             const data = await response.json();
 
             if (response.ok) {
-                console.log("User Created successfully:", data);
+                setData(data)
             } else {
                 console.error("User creation failed:", data);
             }
@@ -28,7 +29,7 @@ const UseCreateUser = () => {
             setLoading(false);
         }
     }
-    return { CreateUser, loading };
+    return { CreateUser, loading, data };
 }
 
 export default UseCreateUser;

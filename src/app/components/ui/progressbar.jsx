@@ -11,7 +11,7 @@ const Progressbar = ({ text, percent }) => {
                 },
                 text: {
                     fill: '#515E59',
-                    fontSize: '1.7rem',
+                    fontSize: '2rem',
                     fontWeight: '800'
                 },
                 trail: {
