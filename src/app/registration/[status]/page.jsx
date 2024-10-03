@@ -414,7 +414,7 @@ const Success = ({ data }) => {
     };
     return (
         <div className="pt-[10rem] border mx-auto w-[50rem] sm:w-auto">
-            <div className="bg-[#013324] text-[#D6FFD3] px-[3rem] pb-[3rem] pt-[5rem] rounded-[1rem]">
+            <div className="bg-[#013324] text-[#D6FFD3] px-[3rem] sm:px-[1.5rem] pb-[3rem] pt-[5rem] rounded-[1rem]">
                 <p className="w-[28rem] mx-auto text-center">You Registration has been completed and is subject to review.</p>
                 <svg
                     width="218"
@@ -459,21 +459,21 @@ const Success = ({ data }) => {
                         </clipPath>
                     </defs>
                 </svg>
-                <div className="">
-                    <p className="text-[1.5rem] mb-[.8rem]">Your Tracking ID</p>
+                <div className="sm:mt-[5rem]">
+                    <p className="text-[1.5rem] sm:text-[1.3rem] mb-[.8rem]">Your Tracking ID</p>
                     <div className="flex justify-between bg-[#FFFFFF4D] items-center rounded-[.4rem] px-[1.7rem] py-[1rem]  mb-[1rem]">
                         <p className="text-[1.4rem] font-[600] text-white">{textToCopy}</p>
                         <Button variant='ghost' onClick={copyToClipboard} className="text-[1.4rem] w-[7rem] hover:bg-transparent hover:text-default font-[700]">{
                             copySuccess ? copySuccess : 'Copy'}</Button>
                     </div>
                 </div>
-                <div className="mt-[2rem] flex justify-between">
+                <div className="mt-[2rem] sm:mt-[2.5rem] flex justify-between">
                     <Button
-                        className="rounded-[.3rem] px-[4.5rem] hover:bg-white py-[2rem] bg-[#B0FFAB] font-[700] text-[#003525]">
+                        className="rounded-[.3rem] px-[4.5rem] sm:px-[2rem] hover:bg-white py-[2rem] bg-[#B0FFAB] font-[700] text-[#003525]">
                         Go Back Home
                     </Button>
                     <Button
-                        className="rounded-[.3rem] px-[4.5rem] hover:bg-[#B0FFAB] py-[2rem] bg-white font-[700] text-[#003525]">
+                        className="rounded-[.3rem] px-[4.5rem] sm:px-[2rem] hover:bg-[#B0FFAB] py-[2rem] bg-white font-[700] text-[#003525]">
                         Track Registration
                     </Button>
                 </div>

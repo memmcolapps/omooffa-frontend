@@ -105,6 +105,10 @@ li {
   @apply text-[2.5rem] font-[700] sm:text-[2rem]
 }
 
+.sub_header_ii{
+  @apply text-[1.8rem] font-[700] sm:text-[1.6rem]
+}
+
 .p_i {
   font-size: 1.8rem;
 
