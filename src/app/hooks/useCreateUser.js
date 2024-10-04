@@ -1,11 +1,11 @@
 'use client'
 import { useState } from "react";
 import useFetchAPI from "./useFetch";
+import { toast } from "react-toastify";
 const UseCreateUser = () => {
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState('')
     const { useFetch } = useFetchAPI()
-
     const CreateUser = async (formData) => {
         setLoading(true)
         try {
@@ -21,6 +21,7 @@ const UseCreateUser = () => {
             if (response.ok) {
                 setData(data)
             } else {
+                
                 console.error("User creation failed:", data);
             }
         } catch (error) {

@@ -1,6 +1,7 @@
 'use client';
 import { useState } from "react";
 import useFetchAPI from "./useFetch";
+import { toast } from "react-toastify";
 
 const useValidation = () => {
     const [loading, setLoading] = useState(false);
@@ -23,11 +24,13 @@ const useValidation = () => {
 
             if (response.ok) {
                 console.log("Validation successful:", data);
+                toast.success('NIN validaton sucessfull')
                 setRes(data)
             } else {
                 console.error("Validation failed:", data);
             }
         } catch (error) {
+            toast.error('NIN validation failed')
             console.error("Error validating NIN:", error);
         } finally {
             setLoading(false);  

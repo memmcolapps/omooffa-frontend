@@ -9,8 +9,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Form, FormField, FormItem, FormLabel, FormControl } from "@/app/components/ui/form";
+import { ToastContainer } from "react-toastify";
 import useUserInfo from "@/app/hooks/useUserInfo";
 import Image from "next/image";
+
 
 const formSchema = z.object({
     trackingId: z.string().min(1, "Tracking ID is required"),
@@ -20,8 +22,8 @@ const formSchema = z.object({
 const Tracking = () => {
     const { getUserInfo, loading, data } = useUserInfo();
     return (
-        <section className="bg-[#EFFFEE] min-h-[100vh]">
-            
+        <section className="bg-[#EFFFEE] min-h-[90vh] ">
+            <ToastContainer />
             {data.message ? <OffaNimiForm data={data.user} /> : <TrackInput data={data} loading={loading} getUserInfo={getUserInfo} />}
         </section>
     );
@@ -30,10 +32,7 @@ const Tracking = () => {
 export default Tracking;
 
 const TrackInput = ({ data, loading, getUserInfo }) => {
-    const router = useRouter();
-   
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -43,35 +42,21 @@ const TrackInput = ({ data, loading, getUserInfo }) => {
         },
     });
 
-
     const togglePasswordVisibility = () => {
         setIsPasswordVisible(!isPasswordVisible);
     };
-
 
     const onSubmit = (values) => {
         const { trackingId, password } = values;
         getUserInfo(trackingId, password);
     };
 
-
-    useEffect(() => {
-        if (data?.message) {
-            const trackingId = form.getValues("trackingId");
-            // router.push(`/registration/tracking/${trackingId}`); 
-        }
-    }, [data, router, form]);
-
     return (
         <div className="mx-auto w-fit sm:w-auto sm:pt-[12rem] pt-[15rem]">
             <p className="font-[800] text-[2rem] text-[#07200B] text-center mb-[1.5rem]">Track Progress</p>
-            <div className="p-[3.5rem] custom bg-[#013122] rounded-[2rem] w-[50rem] sm:w-auto">
-
-
+            <div className="p-[3.5rem] custom bg-[#013122] rounded-[1rem] w-[50rem] sm:w-auto">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)}>
-
-
                         <FormField
                             control={form.control}
                             name="trackingId"
@@ -90,7 +75,6 @@ const TrackInput = ({ data, loading, getUserInfo }) => {
                                 </FormItem>
                             )}
                         />
-
 
                         <FormField
                             control={form.control}
@@ -122,7 +106,6 @@ const TrackInput = ({ data, loading, getUserInfo }) => {
                             )}
                         />
 
-                        {/* Submit Button */}
                         <Button
                             type="submit"
                             required
@@ -145,9 +128,9 @@ const OffaNimiForm = ({ data }) => {
     return (
         <div className="pt-[12rem] pb-[5rem]  sm:w-auto mx-auto w-[69rem]">
             <div className="bg-white text-black rounded-[1.5rem] overflow-hidden">
-                <div className="bg-[#013324] flex justify-between px-[4rem] py-[1rem]">
+                <div className="bg-[#013324] items-center flex justify-between px-[4rem] py-[1rem]">
                     <Image
-                        src={'/common/omo_offa_ni_mi.png'}
+                        src={data.profilePicture ?? '/common/omo_offa_ni_mi.png'}
                         width={48}
                         height={48}
                         alt="logo"
@@ -167,7 +150,7 @@ const OffaNimiForm = ({ data }) => {
                             />
 
                             <div className="flex flex-col gap-[1rem]">
-                                <Info title={'Full Name'} cardHeader={true} content={`${data?.firstName} ${data?.lastName}`} />
+                                <Info title={'Full Name'} cardHeader={true} capitalize={true} content={`${data?.firstName} ${data?.lastName}`} />
                                 <Info title={'DOB'} cardHeader={true} content={'5th of September 1999'} />
                             </div>
                         </div>
@@ -182,34 +165,34 @@ const OffaNimiForm = ({ data }) => {
                     </div>
 
                     <div className="flex px-[4rem] border-b border-b-[#E1E1E1] justify-between py-[2rem]">
-                        <div className="flex flex-col gap-[3rem]">
+                        <div className="flex flex-col  max-w-[19rem] gap-[3rem]">
                             <Info title={'Country of Residence'} content={data.countryOfResidence} />
                             <Info title={'Compound’s Name'} content={data.compoundName} />
                             <Info title={'Emergency Contant '} content={data.emergencyContactNumber} />
                         </div>
-                        <div className="flex flex-col gap-[3rem]">
+                        <div className="flex flex-col  max-w-[19rem] gap-[3rem]">
                             <Info title={'Town of Residence'} content={'Ilorin'} />
                             <Info title={'Ward’s Name'} content={data.wardName} />
                             <Info title={'Employee Status'} content={data.employmentStatus} />
                         </div>
-                        <div className="flex flex-col gap-[3rem]">
+                        <div className="flex flex-col  max-w-[19rem] gap-[3rem]">
                             <Info title={'Local Govt. of Residence'} content={data.localGovernmentAreaOfResidence} />
-                            <Info title={'Current E-mail Address'} content={data.email} />
-                            <Info title={'Current E-mail Address'} content={data.email} />
+                            <Info title={'Emergency Contact Name'} content={data.emergencyContactName} />
+                            <Info title={'Genotype'} content={data.genotype} />
                         </div>
                     </div>
                     <div className="flex px-[4rem] border-b border-b-[#E1E1E1] justify-between py-[2rem] pb-[2rwm]">
-                        <div className="flex flex-col gap-[3rem]">
+                        <div className="flex flex-col max-w-[19rem] gap-[3rem]">
                             <Info title={'How are you in Offa Indigine'} content={data.indigeneByWho} />
                             <Info title={'Adoptee’s Compound'} content={data.adoptedParentCompound ?? 'Nill'} />
                             <Info title={'Emergency Contant '} content={data.emergencyContactNumber} />
                         </div>
-                        <div className="flex flex-col gap-[3rem]">
+                        <div className="flex flex-col  max-w-[19rem] gap-[3rem]">
                             <Info title={'Name of Adoptee'} content={data.adoptedParentName ?? 'Nill'} />
                             <Info title={'Adoptee’s Ward'} content={data.adoptedParentWard ??  'Nill'} />
                             <Info title={'No. of Current Dependent'} content={data.numOfCurrentDependants} />
                         </div>
-                        <div className="flex flex-col gap-[3rem] justify-end">
+                        <div className="flex flex-col  max-w-[19rem] gap-[3rem] justify-end">
                             {/* <Info title={'Medical Genotype'} content={'Nigeria'} /> */}
                             <Info title={'Ward’s Name'} content={data.wardName} />
                             <Info title={'Current E-mail Address'} content={data.email} />
@@ -217,6 +200,7 @@ const OffaNimiForm = ({ data }) => {
                     </div>
                 </div>
             </div>
+           {data.verificationStatus === 'APPROVED' && !data.idPayment && <Button className='w-full py-[2.7rem] text-[1.2rem] text-[#C8FFC4] bg-[#002B1E] font-[700] rounded-[1rem] mt-[1.5rem]'>Pay for Offa Nimi ID Card</Button>}
         </div>
     )
 }
@@ -240,15 +224,15 @@ const Pill = ({ status }) => {
         }
     }
     return (
-        <div className={`w-[8.5rem] h-[3rem] ${colorPalete[status]?.bg} rounded-[2.5rem] flex justify-center items-center`}>
-            <p className={`${colorPalete[status]?.text} capitalize text-[1.2rem] font-[700]`}>{status}</p>
+        <div className={`w-[8.5rem]  sm:w-[6rem] h-[3rem] sm:h-[2rem] ${colorPalete[status]?.bg} rounded-[2.5rem] flex justify-center items-center`}>
+            <p className={`${colorPalete[status]?.text} capitalize text-[1.2rem] sm:text-[1rem] font-[700]`}>{status}</p>
         </div>
     )
 }
 
-const Info = ({ title, content, cardHeader }) => (
+const Info = ({ title, content, cardHeader, capitalize }) => (
     <div className="">
         <p className={`${cardHeader ? 'text-[1.1rem] mb-[.3rem]' : 'text-[1.3rem] mb-[.3rem]'}`}>{title}</p>
-        <p className={`font-[600]  ${cardHeader ? 'text-[1.8rem]' : 'text-[1.6rem]'}`}>{content}</p>
+        <p className={`font-[600]  ${cardHeader ? 'text-[1.8rem]' : 'text-[1.6rem]'} ${capitalize ? 'capitalize' : ''}`}>{content}</p>
     </div>
 )

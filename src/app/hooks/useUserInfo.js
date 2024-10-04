@@ -1,7 +1,7 @@
 'use client'
 import useFetchAPI from "./useFetch"
 import { useState } from "react"
-
+import { toast } from "react-toastify"
 const useUserInfo = () => {
     const { useFetch } = useFetchAPI()
 
@@ -32,6 +32,7 @@ const useUserInfo = () => {
             }
         } catch (error) {
             setloading(false)
+            toast.error(`${error.message}`)
             console.log(`Error: ${error.message}`); // Catch and log fetch errors
         }
     }
