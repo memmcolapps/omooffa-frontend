@@ -47,7 +47,7 @@ const Register = () => {
     nin: "",
     occupation: "",
     phoneNumber: "",
-    userType: "NONIN",
+    userType: status,
     password: "",
   });
 
@@ -127,7 +127,7 @@ const Verify = ({ setStep, setNIN, NIN }) => {
   );
 };
 
-const FirstStep = ({ setStep, setFormData, formData, NIN }) => {
+const FirstStep = ({ setStep, setFormData, formData }) => {
   const formFields = [
     {
       id: "lastName",
@@ -152,14 +152,14 @@ const FirstStep = ({ setStep, setFormData, formData, NIN }) => {
     },
     {
       id: "cityOfResidence",
-      label: "Town/City of Residence",
+      label: "Current Town/City of Residence",
       type: "text",
       placeholder: "City",
       optional: false,
     },
     {
       id: "countryOfResidence",
-      label: "Country of Residence",
+      label: "Current Country of Residence",
       type: "select",
       placeholder: "Select Your Country",
       options: countries,
@@ -167,21 +167,21 @@ const FirstStep = ({ setStep, setFormData, formData, NIN }) => {
     },
     {
       id: "stateOfResidence",
-      label: "State of Residence",
+      label: "Current State of Residence",
       type: "text",
       placeholder: "Enter Your State",
       optional: false,
     },
     {
       id: "localGovernmentAreaOfResidence",
-      label: "Local Govt. of Residence",
+      label: "Current Local Govt. of Residence",
       type: "text",
       placeholder: "E.g Offa South",
       optional: false,
     },
     {
       id: "addressOfResidence",
-      label: "Address of Residence",
+      label: "Current Address of Residence",
       type: "text",
       placeholder: "Address",
       optional: false,
@@ -360,7 +360,7 @@ const ThirdStep = ({ setStep, setFormData, formData }) => {
       label: "Genotype",
       type: "select",
       placeholder: "",
-      options: ["AA", "AS", "SS"],
+      options: ["AA", "AS", "SS", "AC", "SC", "CC"],
       optional: false,
     },
   ];

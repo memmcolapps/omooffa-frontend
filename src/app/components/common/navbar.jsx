@@ -68,7 +68,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed z-[10] top-0 w-[100vw] py-[2.5rem] items-center transition-all duration-500 ease-in-out ${
+      className={`fixed z-[10]  print:hidden top-0 w-[100vw] py-[2.5rem] items-center transition-all duration-500 ease-in-out ${
         scrollY > 100 || pathName !== "/" ? "bg-[#EFFFEE]" : "bg-transparent"
       }`}
     >
