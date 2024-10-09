@@ -474,8 +474,7 @@ const FourthStep = (props) => {
               CreateUser({
                 ...formData,
                 numOfCurrentDependants: +formData.numOfCurrentDependants,
-                employmentStatus:
-                  formData.employmentStatus == "True" ? true : false,
+                employmentStatus: formData.employmentStatus,
                 nin: NIN,
               })
             }
