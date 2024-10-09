@@ -555,7 +555,7 @@ const Success = ({ data }) => {
         </svg>
         <div className="sm:mt-[5rem]">
           <p className="text-[1.5rem] sm:text-[1.3rem] mb-[.8rem]">
-            Your Tracking ID
+            Your OFFANIMI ID
           </p>
           <div className="flex justify-between bg-[#FFFFFF4D] items-center rounded-[.4rem] px-[1.7rem] py-[1rem]  mb-[1rem]">
             <p className="text-[1.4rem] font-[600] text-white">{textToCopy}</p>
