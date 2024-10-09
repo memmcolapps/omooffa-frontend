@@ -1,43 +1,43 @@
-'use client'
-import useFetchAPI from "./useFetch"
-import { useState } from "react"
-import { toast } from "react-toastify"
+"use client";
+import useFetchAPI from "./useFetch";
+import { useState } from "react";
+import { toast } from "react-toastify";
 const useUserInfo = () => {
-    const { useFetch } = useFetchAPI()
+  const { useFetch } = useFetchAPI();
 
-    const [data, setData] = useState({})
-    const [loading, setloading] = useState(false)
+  const [data, setData] = useState({});
+  const [loading, setloading] = useState(false);
 
-    const getUserInfo = async (trackingId, password) => {
-        console.log(`received trackingId: ${trackingId}, password: ${password}`); // Corrected console log
+  const getUserInfo = async (trackingId, password) => {
+    try {
+      setloading(true);
+      const response = await useFetch("api/v1/user/get-status", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ offaNimiId: trackingId, password }),
+      });
 
-        try {
-            setloading(true)
-            const response = await useFetch('api/v1/user/get-status', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ offaNimiId: trackingId, password })
-            })
+      const data = await response.json();
+      console.log(data);
 
-            const data = await response.json()
-
-            if (response.ok) {
-                setloading(false)
-                console.log(`data:`, data); // Log fetched data
-                setData(data)
-            } else {
-                console.log(`Error: ${data.message || "Something went wrong"}`); // Error from response
-            }
-        } catch (error) {
-            setloading(false)
-            toast.error(`${error.message}`)
-            console.log(`Error: ${error.message}`); // Catch and log fetch errors
-        }
+      if (response.ok) {
+        setloading(false);
+        console.log(`data:`, data); // Log fetched data
+        setData(data);
+      }
+    } catch (error) {
+      setloading(false);
+      const networkError = error.message || "Network error";
+      toast.error(networkError);
+      console.error("Network Error:", networkError);
+    } finally {
+      setloading(false);
     }
+  };
 
-    return { getUserInfo, data, loading }
-}
+  return { getUserInfo, data, loading };
+};
 
 export default useUserInfo;

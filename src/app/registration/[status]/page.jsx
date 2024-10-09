@@ -181,13 +181,6 @@ const FirstStep = ({ setStep, setFormData, formData }) => {
       optional: true,
     },
     {
-      id: "cityOfResidence",
-      label: "Current Town/City of Residence",
-      type: "text",
-      placeholder: "City",
-      optional: false,
-    },
-    {
       id: "countryOfResidence",
       label: "Current Country of Residence",
       type: "select",
@@ -201,6 +194,13 @@ const FirstStep = ({ setStep, setFormData, formData }) => {
       type: "select",
       placeholder: "Enter Your State",
       options: states,
+      optional: false,
+    },
+    {
+      id: "cityOfResidence",
+      label: "Current Town/City of Residence",
+      type: "text",
+      placeholder: "City",
       optional: false,
     },
     {
@@ -284,7 +284,7 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
       id: "emergencyContactNumber",
       label: "Emergency Contact (Phone Number)",
       type: "number",
-      placeholder: "E.g 08037117892",
+      placeholder: "E.g +2348037117892",
       optional: false,
     },
     {
