@@ -240,7 +240,11 @@ const OffaNimiForm = ({ data }) => {
               <Info title={"Phone Number"} content={data.phoneNumber} />
             </div>
             <div className="flex flex-col  max-w-[19rem] sm:max-w-[12rem] gap-[3rem]">
-              <Info title={"NIN Number"} capitalize={true} content={data.nin} />
+              <Info
+                title={"NIN Number"}
+                capitalize={true}
+                content={data.nin ?? "Nil"}
+              />
               <Info
                 title={"Ward’s Name"}
                 capitalize={true}
