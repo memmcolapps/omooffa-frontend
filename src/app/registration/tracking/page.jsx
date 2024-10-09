@@ -194,10 +194,10 @@ const OffaNimiForm = ({ data }) => {
             </div>
             <div className="pl-[3rem] pt-[2rem] sm:hidden flex flex-col gap-[1rem]">
               <Info
-                title={"Residence"}
+                title={"State of Residence"}
                 containerStyle={"sm:hidden"}
                 capitalize={true}
-                content={`${data?.cityOfResidence}, ${data?.stateOfResidence} State`}
+                content={`${data?.stateOfResidence} State`}
               />
               <Info
                 title={"Country of Residence"}
@@ -218,31 +218,29 @@ const OffaNimiForm = ({ data }) => {
               capitalize={true}
               content={data?.localGovernmentAreaOfResidence}
             />
+            <Info
+              title={"Town of Residence"}
+              capitalize={true}
+              content={data.cityOfResidence}
+            />
           </div>
 
           <div className="flex px-[4rem] sm:hidden sm:px-[1.5rem] border-b border-b-[#E1E1E1] justify-between py-[2rem]">
             <div className="flex flex-col  max-w-[19rem] gap-[3rem]">
               <Info
-                title={"Country of Residence"}
+                title={"Physcial Challenges"}
                 capitalize={true}
-                content={data.countryOfResidence}
+                content={data.physicalChallenges}
               />
               <Info
                 title={"Compound’s Name"}
                 capitalize={true}
-                content={data.compoundName}
+                content={data.compoundName ?? "Nil"}
               />
-              <Info
-                title={"Emergency Contant "}
-                content={data.emergencyContactNumber}
-              />
+              <Info title={"Phone Number"} content={data.phoneNumber} />
             </div>
             <div className="flex flex-col  max-w-[19rem] sm:max-w-[12rem] gap-[3rem]">
-              <Info
-                title={"Town of Residence"}
-                capitalize={true}
-                content={"Ilorin"}
-              />
+              <Info title={"NIN Number"} capitalize={true} content={data.nin} />
               <Info
                 title={"Ward’s Name"}
                 capitalize={true}
@@ -256,16 +254,19 @@ const OffaNimiForm = ({ data }) => {
             </div>
             <div className="flex flex-col  max-w-[19rem] sm:max-w-[12rem] sm:hidden gap-[3rem]">
               <Info
-                title={"Local Govt. of Residence"}
+                title={"OFFANIMI Number"}
                 capitalize={true}
-                content={data.localGovernmentAreaOfResidence}
+                content={data.offaNimiId}
               />
               <Info
                 title={"Emergency Contact Name"}
                 capitalize={true}
                 content={data.emergencyContactName}
               />
-              <Info title={"Genotype"} content={data.genotype} />
+              <Info
+                title={"Emergency Contant "}
+                content={data.emergencyContactNumber}
+              />
             </div>
           </div>
           <div className="flex px-[4rem] sm:hidden sm:px-[1.5rem] border-b border-b-[#E1E1E1] justify-between py-[2rem] pb-[2rwm]">
@@ -278,23 +279,21 @@ const OffaNimiForm = ({ data }) => {
               <Info
                 title={"Adoptee’s Compound"}
                 capitalize={true}
-                content={data.adoptedParentCompound ?? "Nill"}
+                content={data.adoptedParentCompound ?? "Nil"}
               />
-              <Info
-                title={"Emergency Contant "}
-                content={data.emergencyContactNumber}
-              />
+
+              <Info title={"Genotype"} content={data.genotype} />
             </div>
             <div className="flex flex-col  max-w-[19rem] sm:max-w-[12rem] gap-[3rem]">
               <Info
                 title={"Name of Adoptee"}
                 capitalize={true}
-                content={data.adoptedParentName ?? "Nill"}
+                content={data.adoptedParentName ?? "Nil"}
               />
               <Info
                 title={"Adoptee’s Ward"}
                 capitalize={true}
-                content={data.adoptedParentWard ?? "Nill"}
+                content={data.adoptedParentWard ?? "Nil"}
               />
               <Info
                 title={"No. of Current Dependent"}
@@ -304,9 +303,9 @@ const OffaNimiForm = ({ data }) => {
             <div className="flex flex-col  max-w-[19rem] sm:hidden gap-[3rem] justify-end">
               {/* <Info title={'Medical Genotype'} content={'Nigeria'} /> */}
               <Info
-                title={"Ward’s Name"}
+                title={"Verification Status"}
                 capitalize={true}
-                content={data.wardName}
+                content={data.verificationStatus}
               />
               <Info title={"Current E-mail Address"} content={data.email} />
             </div>
@@ -374,18 +373,18 @@ const OffaNimiForm = ({ data }) => {
               <Info
                 title={"Name of Adoptee"}
                 capitalize={true}
-                content={data.adoptedParentName ?? "Nill"}
+                content={data.adoptedParentName ?? "Nil"}
               />
               <Info
                 title={"Adoptee’s Ward"}
                 capitalize={true}
-                content={data.adoptedParentWard ?? "Nill"}
+                content={data.adoptedParentWard ?? "Nil"}
               />
               <Info title={"Genotype"} content={data.genotype} />
               <Info
                 title={"Adoptee’s Compound"}
                 capitalize={true}
-                content={data.adoptedParentCompound ?? "Nill"}
+                content={data.adoptedParentCompound ?? "Nil"}
               />
               <Info
                 title={"No. of Current Dependent"}

@@ -4,15 +4,16 @@ import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
 import useValidation from "@/app/hooks/useValidation";
 import { Loader2 } from "lucide-react";
-import { countries } from "@/app/utilis/country";
+// import { countries } from "@/app/utilis/country";
 import FormGenerator from "@/app/components/common/formGenerator";
 import { useParams } from "next/navigation";
 import UseCreateUser from "@/app/hooks/useCreateUser";
 import Link from "next/link";
-import { states } from "@/app/utilis/state";
+// import { states } from "@/app/utilis/state";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Progressbar from "@/app/components/ui/progressbar";
+import { Country, State } from "country-state-city";
 
 const Register = () => {
   const param = useParams();
@@ -128,6 +129,35 @@ const Verify = ({ setStep, setNIN, NIN }) => {
 };
 
 const FirstStep = ({ setStep, setFormData, formData }) => {
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+
+  useEffect(() => {
+    const allCountries = Country.getAllCountries().map(
+      (country) => country.name
+    );
+    setCountries(allCountries.sort());
+  }, []);
+
+  useEffect(() => {
+    if (formData.countryOfResidence) {
+      const countryObj = Country.getAllCountries().find(
+        (country) => country.name === formData.countryOfResidence
+      );
+
+      if (countryObj) {
+        const countryStates = State.getStatesOfCountry(countryObj.isoCode).map(
+          (state) => state.name
+        );
+        setStates(countryStates.sort());
+      } else {
+        setStates([]);
+      }
+    } else {
+      setStates([]);
+    }
+  }, [formData.countryOfResidence]);
+
   const formFields = [
     {
       id: "lastName",
@@ -145,7 +175,7 @@ const FirstStep = ({ setStep, setFormData, formData }) => {
     },
     {
       id: "middleName",
-      label: "Middle Name",
+      label: "Middle Name (optional)",
       type: "text",
       placeholder: "Middle Name",
       optional: true,
@@ -168,8 +198,9 @@ const FirstStep = ({ setStep, setFormData, formData }) => {
     {
       id: "stateOfResidence",
       label: "Current State of Residence",
-      type: "text",
+      type: "select",
       placeholder: "Enter Your State",
+      options: states,
       optional: false,
     },
     {
@@ -223,7 +254,7 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
   const formFields = [
     {
       id: "compoundName",
-      label: "Compound’s Name",
+      label: "Compound’s Name (optional)",
       type: "text",
       placeholder: "",
       optional: true,
