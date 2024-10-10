@@ -61,17 +61,19 @@ const Footer = () => {
                         Others
                       </h4>
                       <ul className="mt-[1.5rem] flex flex-col gap-y-[1.5rem]">
-                        <Button
-                          variant="link"
-                          className="p-[0] self-start text-[#A5C3AF] p_li font-[400]"
-                        >
-                          FAQs
-                          <ArrowUpRight
-                            className="text-[#DDFFDA]"
-                            size={15}
-                            strokeWidth={0.5}
-                          />
-                        </Button>
+                        <Link className="" href={"/FAQs"}>
+                          <Button
+                            variant="link"
+                            className="p-[0] self-start text-[#A5C3AF] p_li font-[400]"
+                          >
+                            FAQs
+                            <ArrowUpRight
+                              className="text-[#DDFFDA]"
+                              size={15}
+                              strokeWidth={0.5}
+                            />
+                          </Button>
+                        </Link>
                         <Link className="" href={"/terms"}>
                           <Button
                             variant="link"

@@ -7,7 +7,7 @@ const Registration = () => {
       link: "/registration/HASNIN",
     },
     {
-      name: "Register with Parent’s NIN.",
+      name: "Register with Parent’s NIN If you are less than 16 years.",
       link: "/registration/PARENTNIN",
     },
     {
@@ -36,7 +36,7 @@ export default Registration;
 const Card = ({ category }) => {
   return (
     <div className="bg-[#002E20] flex flex-col px-[2rem] pt-[2.5rem] pb-[2rem]  w-[30rem] h-[17rem] rounded-[1rem]">
-      <p className={`w-[12rem] text-[#D6FFD3] text-[1.6rem] font-[600]`}>
+      <p className={`w-[22rem] text-[#D6FFD3] text-[1.6rem] font-[600]`}>
         {category.name}
       </p>
       <Button

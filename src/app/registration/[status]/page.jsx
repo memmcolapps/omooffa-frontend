@@ -4,12 +4,10 @@ import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
 import useValidation from "@/app/hooks/useValidation";
 import { Loader2 } from "lucide-react";
-// import { countries } from "@/app/utilis/country";
 import FormGenerator from "@/app/components/common/formGenerator";
 import { useParams } from "next/navigation";
 import UseCreateUser from "@/app/hooks/useCreateUser";
 import Link from "next/link";
-// import { states } from "@/app/utilis/state";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Progressbar from "@/app/components/ui/progressbar";
@@ -442,7 +440,7 @@ const FourthStep = (props) => {
       id: "phoneNumber",
       label: "Phone Number",
       type: "number",
-      placeholder: "",
+      placeholder: "+2348035869013",
       optional: false,
     },
     {

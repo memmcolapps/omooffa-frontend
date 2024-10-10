@@ -12,12 +12,10 @@ html {
   }
 }
 
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
-
 
 @layer base {
   :root {
@@ -86,8 +84,6 @@ html {
   }
 }
 
-
-
 p,
 li {
   font-size: 2rem;
@@ -102,11 +98,11 @@ li {
 }
 
 .sub_header_i {
-  @apply text-[2.5rem] font-[700] sm:text-[2rem]
+  @apply text-[2.5rem] font-[700] sm:text-[2rem];
 }
 
-.sub_header_ii{
-  @apply text-[1.8rem] font-[700] sm:text-[1.6rem]
+.sub_header_ii {
+  @apply text-[1.8rem] font-[700] sm:text-[1.6rem];
 }
 
 .p_i {
@@ -126,34 +122,29 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-
 }
-
 
 /* Remove spinner for Firefox */
 
- input[type="number"] {
-    -moz-appearance: textfield;
-} 
-
+input[type="number"] {
+  -moz-appearance: textfield;
+}
 
 .custom {
-  box-shadow: 0px 8px 35.4px 0px #BBCABF38;
-
+  box-shadow: 0px 8px 35.4px 0px #bbcabf38;
 }
 
 .custom-placeholder > span {
-  color: #B6B9B8 !important; 
-  font-weight: 600;/* Custom color for placeholder text */
+  color: #b6b9b8 !important;
+  font-weight: 600; /* Custom color for placeholder text */
 }
-
-
 
 .checkmark-small,
 .checkmark-large {
   stroke-dasharray: 1000; /* Length of the path for stroke */
   stroke-dashoffset: 1000; /* Initially hide the checkmark by offsetting the dash */
-  animation: draw-check 0.5s ease forwards infinite, fill-check 0.5s ease infinite;
+  animation: draw-check 0.5s ease forwards infinite,
+    fill-check 0.5s ease infinite;
 }
 
 .checkmark-large {
@@ -172,20 +163,21 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Animation for fill transition */
 @keyframes fill-check {
-  0%, 50% {
+  0%,
+  50% {
     fill: transparent; /* No fill initially */
   }
   100% {
-    fill: #A3FF9C; /* Animate to full fill */
+    fill: #a3ff9c; /* Animate to full fill */
   }
 }
 
 .Toastify__toast-container {
   @media screen and (max-width: 800px) {
-      width: 60vw !important;
-      left: auto !important;
-      margin-top: 1rem !important;
-      margin-left: 1rem !important;
+    width: 60vw !important;
+    left: auto !important;
+    margin-top: 1rem !important;
+    margin-left: 1rem !important;
   }
 }
 
@@ -195,6 +187,6 @@ input[type="number"]::-webkit-inner-spin-button {
   font-size: 1.6rem !important;
 
   @media screen and (max-width: 800px) {
-      font-size: 1.2rem !important;
+    font-size: 1.2rem !important;
   }
 }
