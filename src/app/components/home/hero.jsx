@@ -23,7 +23,7 @@ const Hero = () => {
         <div className="relative flex px-[10rem] flex-col pt-[10rem] sm:pt-[4rem]">
           <div className="self-center relative  z-[1] mt-[8rem] mb-[19rem] sm:mb-[14rem] w-[55rem] sm:w-[30rem]">
             <h1 className="font-[700] text-[5rem] leading-[5.5rem] sm:leading-[4.5rem] sm:text-[3rem] text-center  text-[#FAFFFA]">
-              Building a brighter future for the ọ́ffà Community
+              Building a brighter future for the Offa Community
             </h1>
             <p className="text-center text-[#FAFFFA] max-w-[43rem] mx-auto text-[1.8rem] sm:text-[1.5rem] sm:font-[400] mt-[1rem]">
               Designed to strengthen the bond between Offa indigenes, both at
