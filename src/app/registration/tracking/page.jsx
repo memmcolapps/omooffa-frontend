@@ -31,7 +31,7 @@ const Tracking = () => {
     <section className="bg-[#EFFFEE] min-h-[100vh] sm:px-[2.5rem]">
       <ToastContainer />
       {data.message ? (
-        <OffaNimiForm data={data.user} />
+        <OffaNimiForm data={data.user.dataValues} />
       ) : (
         <TrackInput data={data} loading={loading} getUserInfo={getUserInfo} />
       )}

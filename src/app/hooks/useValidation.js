@@ -23,7 +23,7 @@ const useValidation = () => {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("Validation successful:", data);
+        console.log("Validation successful:");
         toast.success("NIN validaton sucessfull");
         setRes(data);
       } else {

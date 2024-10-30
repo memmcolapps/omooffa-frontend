@@ -20,11 +20,9 @@ const useUserInfo = () => {
       });
 
       const data = await response.json();
-      console.log(data);
 
       if (response.ok) {
         setloading(false);
-        console.log(`data:`, data); // Log fetched data
         setData(data);
       }
     } catch (error) {
