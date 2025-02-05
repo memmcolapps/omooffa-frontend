@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
 import useValidation from "@/app/hooks/useValidation";
@@ -12,6 +12,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Progressbar from "@/app/components/ui/progressbar";
 import { Country, State } from "country-state-city";
+import { wards, compounds } from "@/app/utilis/wards";
+import { popularProfessions } from "@/app/utilis/professions";
 
 const Register = () => {
   const param = useParams();
@@ -249,58 +251,65 @@ const FirstStep = ({ setStep, setFormData, formData }) => {
 };
 
 const SecondStep = ({ setStep, setFormData, formData }) => {
-  const formFields = [
-    {
-      id: "compoundName",
-      label: "Compound’s Name (optional)",
-      type: "text",
-      placeholder: "",
-      optional: true,
-    },
-    {
-      id: "wardName",
-      label: "Ward’s Name",
-      type: "text",
-      placeholder: "E.g Balogun Fulani Ward",
-      optional: false,
-    },
-    {
-      id: "email",
-      label: "Current E-mail Address",
-      type: "text",
-      placeholder: "Email",
-      optional: false,
-    },
-    {
-      id: "emergencyContactName",
-      label: "Emergency Contact (Name)",
-      type: "text",
-      placeholder: "Emergency Contact",
-      optional: false,
-    },
-    {
-      id: "emergencyContactNumber",
-      label: "Emergency Contact (Phone Number)",
-      type: "number",
-      placeholder: "E.g +2348037117892",
-      optional: false,
-    },
-    {
-      id: "employmentStatus",
-      label: "Employment Status",
-      type: "select",
-      placeholder: "",
-      options: ["employed", "unemployed"],
-      optional: false,
-    },
-    {
-      id: "occupation",
-      label: "Occupation",
-      type: "text",
-      placeholder: "",
-      optional: false,
-    },
-  ];
+  const formFields = useMemo(
+    () => [
+      {
+        id: "wardName",
+        label: "Ward’s Name",
+        type: "select",
+        placeholder: "",
+        options: wards.map((ward) => ward),
+        optional: false,
+      },
+      {
+        id: "compoundName",
+        label: "Compound’s Name",
+        type: "select",
+        placeholder: "",
+        options: compounds.map((compound) => compound),
+        optional: false,
+      },
+
+      {
+        id: "email",
+        label: "Current E-mail Address",
+        type: "text",
+        placeholder: "Email",
+        optional: false,
+      },
+      {
+        id: "emergencyContactName",
+        label: "Emergency Contact (Name)",
+        type: "text",
+        placeholder: "Emergency Contact",
+        optional: false,
+      },
+      {
+        id: "emergencyContactNumber",
+        label: "Emergency Contact (Phone Number)",
+        type: "number",
+        placeholder: "E.g +2348037117892",
+        optional: false,
+      },
+      {
+        id: "employmentStatus",
+        label: "Employment Status",
+        type: "select",
+        placeholder: "",
+        options: ["employed", "unemployed"],
+        optional: false,
+      },
+      {
+        id: "occupation",
+        label: "Profession",
+        type: "select",
+        placeholder: "",
+        options: popularProfessions,
+        optional: false,
+      },
+    ],
+    [formData]
+  );
 
   const isNextDisabled = formFields.some(
     (field) => !formData[field.id] && !field.optional
