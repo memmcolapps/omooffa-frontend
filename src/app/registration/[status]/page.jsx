@@ -279,14 +279,14 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
       },
       {
         id: "emergencyContactName",
-        label: "Emergency Contact (Name)",
+        label: "Emergency Contact Name",
         type: "text",
         placeholder: "Emergency Contact",
         optional: false,
       },
       {
         id: "emergencyContactNumber",
-        label: "Emergency Contact (Phone Number)",
+        label: "Emergency Contact Phone Number",
         type: "number",
         placeholder: "E.g +2348037117892",
         optional: false,
@@ -467,7 +467,7 @@ const FourthStep = (props) => {
       id: "password",
       label: "Password",
       type: "password",
-      placeholder: "",
+      placeholder: "Minimum 8 characters",
       optional: false,
     },
   ];

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Select,
   SelectContent,
@@ -10,22 +10,51 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
 const FormGenerator = ({ fields, setFormData, formData, onCountryChange }) => {
+  // Handle indigeneByWho changes
+  const handleIndigeneByWhoChange = (value) => {
+    const isAdoption = value === "By Adoption";
+
+    // Update form data with new value
+    setFormData((prev) => ({
+      ...prev,
+      indigeneByWho: value,
+    }));
+
+    // Clear adoption fields if not "By Adoption"
+    if (!isAdoption) {
+      setFormData((prev) => ({
+        ...prev,
+        adoptedParentName: "",
+        adoptedParentCompound: "",
+        adoptedParentWard: "",
+      }));
+    }
+  };
+
+  // Get disabled status for adoption fields
+  const isAdoptionFieldDisabled = (fieldId) => {
+    const adoptionFields = [
+      "adoptedParentName",
+      "adoptedParentCompound",
+      "adoptedParentWard",
+    ];
+    return (
+      adoptionFields.includes(fieldId) &&
+      formData.indigeneByWho !== "By Adoption"
+    );
+  };
+
   return (
     <>
       {fields.map((field, index) => (
-        <div key={index} className="grid w-full items-center gap-1.5">
-          {/* Label for the form field */}
-          <Label
-            htmlFor={field.id}
-            className="text-[1.3rem] font-500 text-[#515E59]"
-          >
+        <div key={index} className="mb-4">
+          <Label htmlFor={field.id} className="block mb-2 text-sm font-medium">
             {field.label}
           </Label>
 
           {/* Render input based on field type */}
           {field.type === "text" && (
             <Input
-              type="text"
               id={field.id}
               value={formData[field.id] || ""}
               onChange={(e) =>
@@ -34,6 +63,7 @@ const FormGenerator = ({ fields, setFormData, formData, onCountryChange }) => {
                   [field.id]: e.target.value.toLowerCase(),
                 }))
               }
+              disabled={isAdoptionFieldDisabled(field.id)}
               className="h-[3.8rem] text-[1.2rem] text-[#07200B] font-[600] placeholder:font-[400] placeholder:text-[#B6B9B8]"
               placeholder={field.placeholder}
             />
@@ -41,8 +71,8 @@ const FormGenerator = ({ fields, setFormData, formData, onCountryChange }) => {
 
           {field.type === "number" && (
             <Input
-              type="number"
               id={field.id}
+              type="number"
               value={formData[field.id] || ""}
               onChange={(e) =>
                 setFormData((prevFormData) => ({
@@ -50,6 +80,7 @@ const FormGenerator = ({ fields, setFormData, formData, onCountryChange }) => {
                   [field.id]: e.target.value,
                 }))
               }
+              disabled={isAdoptionFieldDisabled(field.id)}
               className="h-[3.8rem] text-[1.2rem] text-[#07200B] font-[600] placeholder:font-[400] placeholder:text-[#B6B9B8]"
               placeholder={field.placeholder}
             />
@@ -57,8 +88,8 @@ const FormGenerator = ({ fields, setFormData, formData, onCountryChange }) => {
 
           {field.type === "password" && (
             <Input
-              type="password"
               id={field.id}
+              type="password"
               value={formData[field.id] || ""}
               onChange={(e) =>
                 setFormData((prevFormData) => ({
@@ -66,6 +97,7 @@ const FormGenerator = ({ fields, setFormData, formData, onCountryChange }) => {
                   [field.id]: e.target.value,
                 }))
               }
+              disabled={isAdoptionFieldDisabled(field.id)}
               className="h-[3.8rem] text-[1.2rem] text-[#07200B] font-[600] placeholder:font-[400] placeholder:text-[#B6B9B8]"
               placeholder={field.placeholder}
             />
@@ -75,28 +107,29 @@ const FormGenerator = ({ fields, setFormData, formData, onCountryChange }) => {
             <Select
               value={formData[field.id] || ""}
               onValueChange={(value) => {
-                setFormData((prevFormData) => ({
-                  ...prevFormData,
-                  [field.id]: value,
-                }));
+                // Special handling for indigeneByWho field
+                if (field.id === "indigeneByWho") {
+                  handleIndigeneByWhoChange(value);
+                } else {
+                  // Normal handling for other select fields
+                  setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    [field.id]: value,
+                  }));
+                }
+
+                // Handle country change if needed
                 if (field.id === "countryOfResidence" && onCountryChange) {
-                  onCountryChange(value); // Trigger country change if relevant
+                  onCountryChange(value);
                 }
               }}
             >
-              <SelectTrigger className="w-auto h-[3.8rem] pr-[1.5rem] text-[1.2rem]">
-                <SelectValue
-                  placeholder={field.placeholder}
-                  className="pr-[3rem]"
-                />
+              <SelectTrigger className="h-[3.8rem] text-[1.2rem] text-[#07200B] font-[600]">
+                <SelectValue placeholder={field.placeholder} />
               </SelectTrigger>
               <SelectContent>
                 {field.options.map((option, idx) => (
-                  <SelectItem
-                    key={idx}
-                    className="text-[1.2rem] capitalize font-[500]"
-                    value={option}
-                  >
+                  <SelectItem key={idx} value={option}>
                     {option}
                   </SelectItem>
                 ))}
