@@ -464,6 +464,13 @@ const FourthStep = (props) => {
       optional: false,
     },
     {
+      id: "bankName",
+      label: "Bank Name",
+      type: "select",
+      placeholder: "",
+      options: ["First Bank", "Keystone", "Zenith Bank"],
+    },
+    {
       id: "password",
       label: "Password",
       type: "password",
