@@ -247,7 +247,7 @@ export const compounds = [
   "Sokosoko",
   "Sule",
   "Tabioloko",
-  "TEmileke",
+  "Temileke",
   "Titun",
   "Yemaja",
   "Other",

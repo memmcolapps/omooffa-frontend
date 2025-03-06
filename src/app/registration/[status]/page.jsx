@@ -272,10 +272,10 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
 
       {
         id: "email",
-        label: "Current E-mail Address",
+        label: "Current E-mail Address (Optional)",
         type: "text",
         placeholder: "Email",
-        optional: false,
+        optional: true,
       },
       {
         id: "emergencyContactName",
