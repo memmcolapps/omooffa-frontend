@@ -48,10 +48,13 @@ const Footer = () => {
                       </h4>
                       <ul className="">
                         <li className="p_ii text-[#A5C3AF] my-[1.5rem]">
-                          OmoOffaNimi@gmail.com
+                          info@omooffanimi.com{" "}
                         </li>
                         <li className="p_ii text-[#A5C3AF]">
-                          +234 806 668 9130
+                          +234 809 999 1689{" "}
+                        </li>
+                        <li className="p_ii text-[#A5C3AF]">
+                          +234 805 312 1071{" "}
                         </li>
                       </ul>
                     </div>
