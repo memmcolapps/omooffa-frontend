@@ -34,7 +34,7 @@ const Register = () => {
     addressOfResidence: "",
     compoundName: "",
     wardName: "",
-    email: "",
+    email: "" || null,
     emergencyContactName: "",
     emergencyContactNumber: "",
     employmentStatus: "",
