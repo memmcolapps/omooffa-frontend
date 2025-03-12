@@ -45,7 +45,7 @@ const Register = () => {
     numOfCurrentDependants: "",
     genotype: "",
     physicalChallenges: "",
-    nin: "",
+    nin: null,
     occupation: "",
     phoneNumber: "",
     userType: status,
