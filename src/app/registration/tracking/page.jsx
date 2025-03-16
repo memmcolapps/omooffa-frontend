@@ -258,7 +258,7 @@ const OffaNimiForm = ({ data }) => {
             </div>
             <div className="flex flex-col  max-w-[19rem] sm:max-w-[12rem] sm:hidden gap-[3rem]">
               <Info
-                title={"OFFANIMI Number"}
+                title={"Omo Offa Ni Mi Number"}
                 capitalize={true}
                 content={data.offaNimiId}
               />
