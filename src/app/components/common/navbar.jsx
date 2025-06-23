@@ -110,7 +110,8 @@ const Navbar = () => {
 
           <Button
             asChild
-            className="font-[700] bg-white text-[#003525] hover:bg-[#002E20] hover:text-white px-[2rem] py-[1.8rem] rounded-[.7rem] sm:hidden"
+            disabled={true}
+            className="font-[700] bg-white text-[#003525] hover:bg-[#002E20] hover:text-white px-[2rem] py-[1.8rem] rounded-[.7rem] sm:hidden "
           >
             <Link href={"/registration"}>Enroll Now!</Link>
           </Button>

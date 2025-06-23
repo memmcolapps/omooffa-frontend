@@ -35,6 +35,7 @@ const Hero = () => {
               <Button
                 className="font-[700] hover:bg-[#002E20] hover:text-white px-[2rem] py-[1.8rem] bg-white text-[#023727]"
                 asChild
+                disabled={true}
               >
                 <Link className="" href={"/registration"}>
                   Enroll Now
