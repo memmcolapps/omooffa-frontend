@@ -77,12 +77,12 @@ const Footer = () => {
                             />
                           </Button>
                         </Link>
-                        <Link className="" href={"/terms"}>
+                        <Link className="" href={"/privacy"}>
                           <Button
                             variant="link"
                             className="p-[0] text-[#A5C3AF] p_li font-[400]"
                           >
-                            Privacy Policy
+                            DATA PRIVACY POLICY
                             <ArrowUpRight
                               className="text-[#DDFFDA]"
                               size={15}
@@ -90,12 +90,25 @@ const Footer = () => {
                             />
                           </Button>
                         </Link>
-                        <Link className="" href={"/terms"}>
+                        <Link className="" href={"/protection"}>
                           <Button
                             variant="link"
                             className="p-[0] text-[#A5C3AF] p_li font-[400]"
                           >
-                            Terms of Use
+                            DATA STORAGE
+                            <ArrowUpRight
+                              className="text-[#DDFFDA]"
+                              size={15}
+                              strokeWidth={0.5}
+                            />
+                          </Button>
+                        </Link>
+                        <Link className="" href={"/cookies"}>
+                          <Button
+                            variant="link"
+                            className="p-[0] text-[#A5C3AF] p_li font-[400]"
+                          >
+                            COOKIES
                             <ArrowUpRight
                               className="text-[#DDFFDA]"
                               size={15}
