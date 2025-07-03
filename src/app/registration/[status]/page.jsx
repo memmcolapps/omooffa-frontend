@@ -1,19 +1,19 @@
 "use client";
 import React, { useEffect, useState, useMemo, useCallback } from "react";
-import { Input } from "@/app/components/ui/input";
-import { Button } from "@/app/components/ui/button";
-import useValidation from "@/app/hooks/useValidation";
+import { Input } from "../../components/ui/input";
+import { Button } from "../../components/ui/button";
+import useValidation from "../../hooks/useValidation";
 import { Loader2 } from "lucide-react";
-import FormGenerator from "@/app/components/common/formGenerator";
+import FormGenerator from "../../components/common/formGenerator";
 import { useParams } from "next/navigation";
-import UseCreateUser from "@/app/hooks/useCreateUser";
+import UseCreateUser from "../../hooks/useCreateUser";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Progressbar from "@/app/components/ui/progressbar";
+import Progressbar from "../../components/ui/progressbar";
 import { Country, State } from "country-state-city";
-import { wards, compounds } from "@/app/utilis/wards";
-import { popularProfessions } from "@/app/utilis/professions";
+import { wards, compounds } from "../../utilis/wards";
+import { popularProfessions } from "../../utilis/professions";
 
 const Register = () => {
   const param = useParams();

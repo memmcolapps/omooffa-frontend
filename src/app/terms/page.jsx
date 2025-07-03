@@ -1,11 +1,11 @@
-import Content from '@/app/components/terms/content'
+import Content from "../components/terms/content";
 
 const Terms = () => {
-    return (
-        <>
-            <Content />
-        </>
-    );
-}
+  return (
+    <>
+      <Content />
+    </>
+  );
+};
 
 export default Terms;
