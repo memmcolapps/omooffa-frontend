@@ -77,6 +77,19 @@ const Footer = () => {
                             />
                           </Button>
                         </Link>
+                        <Link className="" href={"/terms"}>
+                          <Button
+                            variant="link"
+                            className="p-[0] text-[#A5C3AF] p_li font-[400]"
+                          >
+                            PRIVACY POLICY
+                            <ArrowUpRight
+                              className="text-[#DDFFDA]"
+                              size={15}
+                              strokeWidth={0.5}
+                            />
+                          </Button>
+                        </Link>
                         <Link className="" href={"/privacy"}>
                           <Button
                             variant="link"
