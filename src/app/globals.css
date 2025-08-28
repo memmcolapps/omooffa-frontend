@@ -319,6 +319,7 @@ li {
 .sub_header_ii {
   @apply text-[1.8rem] font-[700] sm:text-[1.6rem];
   line-height: 1.3;
+  text-align: start;
 }
 
 /* Paragraph styles with improved readability */
