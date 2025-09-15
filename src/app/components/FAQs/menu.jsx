@@ -17,19 +17,33 @@ export function FaqMenu() {
         className="bg-[#002E20] mt-[2.5rem] p-[4rem]"
       >
         <AccordionTrigger className="sub_header_ii hover:no-underline">
+          Who is the data controller and who is the data subject?
+        </AccordionTrigger>
+        <AccordionContent className="mt-[1rem] mb-[1.3rem] leading-normal">
+          <p className="p_i">
+            OMO OFFA NI MI DEVELOPMENT UNION is the data controller Any person
+            who subscribes to any of the programmes of the data controller by
+            providing his or her personal data is data subject.
+          </p>
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem
+        value="item-1"
+        className="bg-[#002E20] mt-[2.5rem] p-[4rem]"
+      >
+        <AccordionTrigger className="sub_header_ii hover:no-underline">
           Who retains the Ownership of the the data or will it be available for
           marketing purposes or a database that could be commercialized?
         </AccordionTrigger>
         <AccordionContent className="mt-[1rem] mb-[1.3rem] leading-normal">
           <p className="p_i">
             The data belongs to the data subject who will exercise control over
-            as to his rights under the privacy law, while the association serve
-            as a Data controller and processor in compliance with the data
-            privacy law in Nigeria. The rights of the data subject includes
-            rights to erasure, modifications and lawful processing. The data
-            will only be used for the purpose of the association and not
-            commercial bases. The LGA will only access the data through the
-            association.
+            as to his rights under the privacy law, while the Union serve as a
+            Data controller and processor in compliance with the data privacy
+            law in Nigeria. The rights of the data subject includes rights to
+            erasure, modifications and lawful processing. The data will only be
+            used for the purpose of the Union and not commercial bases. The LGA
+            will only access the data through the Union.
           </p>
         </AccordionContent>
       </AccordionItem>
@@ -43,8 +57,7 @@ export function FaqMenu() {
         <AccordionContent className="mt-[1rem] mb-[1.3rem] leading-normal">
           <p className="p_i">
             Yes it will be in accordance with the Nigerian Data protection law
-            2023. Data protection Officer DPO has been employed by the
-            association.
+            2023. Data protection Officer DPO has been employed by the Union.
           </p>
         </AccordionContent>
       </AccordionItem>
