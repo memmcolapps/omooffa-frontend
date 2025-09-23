@@ -14,11 +14,12 @@ import Progressbar from "../../components/ui/progressbar";
 import { Country, State } from "country-state-city";
 import { wards, compounds } from "../../utilis/wards";
 import { popularProfessions } from "../../utilis/professions";
+import { UploadDropzone } from "../../../utils/uploadthing";
 
 const Register = () => {
   const param = useParams();
   const status = param?.status;
-  const [NIN, setNIN] = useState("");
+  const [NIN, setNIN] = useState(null);
   const { CreateUser, loading, data } = UseCreateUser();
   const [step, setStep] = useState(
     status === "DECEASED" || status === "NONIN" ? 1 : 0
@@ -50,6 +51,7 @@ const Register = () => {
     phoneNumber: "",
     userType: status,
     password: "",
+    profilePicUrl: "",
   });
 
   const steps = [
@@ -479,9 +481,9 @@ const FourthStep = (props) => {
     },
   ];
 
-  const isNextDisabled = formFields.some(
-    (field) => !formData[field.id] && !field.optional
-  );
+  const isNextDisabled =
+    formFields.some((field) => !formData[field.id] && !field.optional) ||
+    !formData.profilePicUrl;
 
   return (
     <div className="pt-[8rem]">
@@ -494,6 +496,62 @@ const FourthStep = (props) => {
           formData={formData}
           setFormData={setFormData}
         />
+
+        {/* Profile Picture Upload Section */}
+        <div className="space-y-2">
+          <label className="text-[1.2rem] font-medium">
+            Profile Picture <span className="text-red-500">*</span>
+          </label>
+          {formData.profilePicUrl ? (
+            <div className="flex flex-col gap-4">
+              <div className="relative w-32 h-32 mx-auto">
+                <img
+                  src={formData.profilePicUrl}
+                  alt="Profile preview"
+                  className="w-full h-full object-cover rounded-lg border-2 border-[#002E20]"
+                />
+              </div>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() =>
+                  setFormData((prev) => ({ ...prev, profilePicUrl: "" }))
+                }
+                className="text-sm text-red-600 hover:text-red-700"
+              >
+                Remove Image
+              </Button>
+            </div>
+          ) : (
+            <UploadDropzone
+              endpoint="profilePicture"
+              onClientUploadComplete={(res) => {
+                // Do something with the response
+                console.log("Files: ", res);
+                if (res && res[0]) {
+                  setFormData((prev) => ({
+                    ...prev,
+                    profilePicUrl: res[0].ufsUrl,
+                  }));
+                }
+              }}
+              onUploadError={(error) => {
+                // Do something with the error.
+                console.error("Upload error:", error);
+                alert(`ERROR! ${error.message}`);
+              }}
+              className="border-2 border-dashed border-[#002E20] bg-[#EFFFEE] rounded-lg p-6 text-center hover:border-[#B0FFAB] transition-colors"
+              appearance={{
+                label: {
+                  color: "#002E20",
+                },
+                allowedContent: {
+                  color: "#666",
+                },
+              }}
+            />
+          )}
+        </div>
 
         <p className="text-[1.2rem]">
           By clicking on “Submit” to complete your registration you agree to{" "}
