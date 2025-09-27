@@ -110,10 +110,19 @@ const Navbar = () => {
 
           <Button
             asChild
-            disabled={true}
+            disabled
+            tabIndex={-1}
             className="font-[700] bg-white text-[#003525] hover:bg-[#002E20] hover:text-white px-[2rem] py-[1.8rem] rounded-[.7rem] sm:hidden "
+            aria-disabled="true"
           >
-            <Link href={"/registration"}>Enroll Now!</Link>
+            <Link
+              href={"/registration"}
+              tabIndex={-1}
+              aria-disabled="true"
+              className="pointer-events-none"
+            >
+              Enroll Now!
+            </Link>
           </Button>
 
           {/* Hamburger for mobile menu */}

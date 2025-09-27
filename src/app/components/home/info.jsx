@@ -21,8 +21,19 @@ const Info = () => {
                 className="w-[60rem] sm:mt-[3rem]"
                 alt="offa indigene card"
               />
-              <Button className="px-[2.8rem] sm:flex self-center hidden rounded-[.8rem] py-[2rem] bg-[#041D00] ml-[2.5rem]">
-                <Link className="" href={"/registration"}>
+              <Button
+                className="px-[2.8rem] sm:flex self-center hidden rounded-[.8rem] py-[2rem] bg-[#041D00] ml-[2.5rem]"
+                disabled
+                tabIndex={-1}
+                aria-disabled="true"
+                asChild
+              >
+                <Link
+                  className="pointer-events-none"
+                  href={"/registration"}
+                  tabIndex={-1}
+                  aria-disabled="true"
+                >
                   Join Us Now
                 </Link>
               </Button>
@@ -31,8 +42,19 @@ const Info = () => {
               {processes.map((process, i) => (
                 <Process key={i} process={process} />
               ))}
-              <Button className="px-[2.8rem] sm:hidden rounded-[.8rem] py-[2rem] bg-[#041D00] self-start ml-[2.5rem]">
-                <Link className="" href={"/registration"}>
+              <Button
+                className="px-[2.8rem] sm:hidden rounded-[.8rem] py-[2rem] bg-[#041D00] self-start ml-[2.5rem]"
+                disabled
+                tabIndex={-1}
+                aria-disabled="true"
+                asChild
+              >
+                <Link
+                  className="pointer-events-none"
+                  href={"/registration"}
+                  tabIndex={-1}
+                  aria-disabled="true"
+                >
                   Join Us Now
                 </Link>
               </Button>

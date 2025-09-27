@@ -2,8 +2,8 @@
 import { Printer } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/app/components/ui/button";
-import { Input } from "@/app/components/ui/input";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
 import { Loader2, Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,9 +14,9 @@ import {
   FormItem,
   FormLabel,
   FormControl,
-} from "@/app/components/ui/form";
+} from "../../components/ui/form";
 import { ToastContainer } from "react-toastify";
-import useUserInfo from "@/app/hooks/useUserInfo";
+import useUserInfo from "../../hooks/useUserInfo";
 import Image from "next/image";
 import "react-toastify/dist/ReactToastify.css";
 

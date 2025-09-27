@@ -319,6 +319,7 @@ li {
 .sub_header_ii {
   @apply text-[1.8rem] font-[700] sm:text-[1.6rem];
   line-height: 1.3;
+  text-align: start;
 }
 
 /* Paragraph styles with improved readability */
@@ -447,4 +448,45 @@ input[type="number"] {
   @media screen and (max-width: 600px) {
     font-size: 1.2rem !important;
   }
+}
+
+/* UploadThing Component Styles */
+@import "@uploadthing/react/styles.css";
+
+/* Custom UploadThing overrides to match the app theme */
+.ut-button {
+  background-color: #002e20 !important;
+  color: #c8ffc4 !important;
+  border-radius: 0.5rem !important;
+  font-weight: 700 !important;
+  padding: 1rem 2rem !important;
+  font-size: 1.4rem !important;
+}
+
+.ut-button:hover {
+  background-color: #b0ffab !important;
+  color: #002e20 !important;
+}
+
+.ut-upload-icon {
+  color: #002e20 !important;
+}
+
+.ut-label {
+  color: #002e20 !important;
+  font-weight: 600 !important;
+  font-size: 1.2rem !important;
+}
+
+.ut-allowed-content {
+  color: #666 !important;
+  font-size: 1rem !important;
+}
+
+.ut-uploading {
+  color: #002e20 !important;
+}
+
+.ut-ready:hover {
+  border-color: #b0ffab !important;
 }

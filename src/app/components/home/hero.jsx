@@ -35,9 +35,16 @@ const Hero = () => {
               <Button
                 className="font-[700] hover:bg-[#002E20] hover:text-white px-[2rem] py-[1.8rem] bg-white text-[#023727]"
                 asChild
-                disabled={true}
+                disabled
+                tabIndex={-1}
+                aria-disabled="true"
               >
-                <Link className="" href={"/registration"}>
+                <Link
+                  className="pointer-events-none"
+                  href={"/registration"}
+                  tabIndex={-1}
+                  aria-disabled="true"
+                >
                   Enroll Now
                 </Link>
               </Button>

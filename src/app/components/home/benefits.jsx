@@ -37,8 +37,19 @@ const Benefits = () => {
                 <Benefit key={i} benefit={benefit} />
               ))}
             </div>
-            <Button className="mx-auto mt-[5rem] px-[2.5rem] py-[2rem] bg-[#041D00] text-[#C8FFC4] rounded-[.7rem]">
-              <Link className="" href={"/registration"}>
+            <Button
+              className="mx-auto mt-[5rem] px-[2.5rem] py-[2rem] bg-[#041D00] text-[#C8FFC4] rounded-[.7rem]"
+              disabled
+              tabIndex={-1}
+              aria-disabled="true"
+              asChild
+            >
+              <Link
+                className="pointer-events-none"
+                href={"/registration"}
+                tabIndex={-1}
+                aria-disabled="true"
+              >
                 Register Now!
               </Link>
             </Button>
