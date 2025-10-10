@@ -52,6 +52,17 @@ const Register = () => {
     userType: status,
     password: "",
     profilePicUrl: "",
+    dob: "",
+    placeOfBirth: "",
+    fathersName: "",
+    fathersPlaceOfBirth: "",
+    mothersName: "",
+    mothersPlaceOfBirth: "",
+    fathersPhoneNumber: "",
+    mothersHomeTown: "",
+    mothersFatherName: "",
+    mothersCompound: "",
+    mothersPhoneNumber: "",
   });
 
   const steps = [
@@ -73,6 +84,15 @@ const Register = () => {
       formData={formData}
     />,
     <FourthStep
+      setStep={setStep}
+      CreateUser={CreateUser}
+      loading={loading}
+      setFormData={setFormData}
+      formData={formData}
+      data={data}
+      NIN={NIN}
+    />,
+    <FifthStep
       setStep={setStep}
       CreateUser={CreateUser}
       loading={loading}
@@ -238,7 +258,7 @@ const FirstStep = ({ setStep, setFormData, formData }) => {
         />
 
         <div className="flex justify-between">
-          <Progressbar text={"1 / 4"} percent={25} />
+          <Progressbar text={"1 / 5"} percent={20} />
           <Button
             className="bg-[#002E20] px-[3.5rem] py-[2rem] rounded-[.5rem] text-[#C8FFC4] font-[700] ml-auto"
             onClick={() => setStep((prevStep) => prevStep + 1)}
@@ -337,7 +357,7 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
             Back
           </Button>
 
-          <Progressbar text={"2 / 4"} percent={50} />
+          <Progressbar text={"2 / 5"} percent={40} />
 
           <Button
             className="bg-[#002E20] px-[3.5rem] py-[2rem] hover:bg-[#B0FFAB] hover:text-[#002E20] rounded-[.5rem] text-[#C8FFC4] font-[700]"
@@ -432,7 +452,7 @@ const ThirdStep = ({ setStep, setFormData, formData }) => {
             Back
           </Button>
 
-          <Progressbar text={"3 / 4"} percent={75} />
+          <Progressbar text={"3 / 5"} percent={60} />
 
           <Button
             className="bg-[#002E20] px-[3.5rem] py-[2rem] hover:bg-[#B0FFAB] hover:text-[#002E20] rounded-[.5rem] text-[#C8FFC4] font-[700]"
@@ -572,7 +592,161 @@ const FourthStep = (props) => {
             Back
           </Button>
 
-          <Progressbar text={"4 / 4"} percent={100} />
+          <Progressbar text={"4 / 5"} percent={80} />
+
+          <Button
+            className="bg-[#002E20] px-[3.5rem] py-[2rem] hover:bg-[#B0FFAB] hover:text-[#002E20] rounded-[.5rem] text-[#C8FFC4] font-[700]"
+            onClick={() => setStep((prevStep) => prevStep + 1)}
+            disabled={isNextDisabled}
+          >
+            Next
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const FifthStep = (props) => {
+  const { setStep, setFormData, formData, CreateUser, loading, NIN } = props;
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const formFields = [
+    {
+      id: "dob",
+      label: "Date of Birth",
+      type: "date",
+      placeholder: "Date",
+      optional: false,
+    },
+    {
+      id: "placeOfBirth",
+      label: "Place of Birth",
+      type: "text",
+      placeholder: "Place",
+      optional: false,
+    },
+    {
+      id: "fathersName",
+      label: "Father's Name",
+      type: "text",
+      placeholder: "Father's Name",
+      optional: false,
+    },
+    {
+      id: "fathersPlaceOfBirth",
+      label: "Father's Place of Birth",
+      type: "text",
+      placeholder: "Father's Place of Birth",
+      optional: false,
+    },
+    {
+      id: "mothersName",
+      label: "Mother's Name",
+      type: "text",
+      placeholder: "Mother's Name",
+      optional: false,
+    },
+    {
+      id: "mothersPlaceOfBirth",
+      label: "Mother's Place of Birth",
+      type: "text",
+      placeholder: "Mother's Place of Birth",
+      optional: false,
+    },
+    {
+      id: "fathersPhoneNumber",
+      label: "Father's Phone Number",
+      type: "number",
+      placeholder: "Father's Phone Number",
+      optional: true,
+    },
+    {
+      id: "mothersHomeTown",
+      label: "Mother's Home Town",
+      type: "text",
+      placeholder: "Mother's Home Town",
+      optional: false,
+    },
+    {
+      id: "mothersFatherName",
+      label: "Mother's Father Name",
+      type: "text",
+      placeholder: "Mother's Father Name",
+      optional: false,
+    },
+    {
+      id: "mothersCompound",
+      label: "Mother's Compound",
+      type: "text",
+      placeholder: "Mother's Compound",
+      optional: false,
+    },
+    {
+      id: "mothersPhoneNumber",
+      label: "Mother's Phone Number",
+      type: "number",
+      placeholder: "Mother's Phone Number",
+      optional: true,
+    },
+  ];
+  const isNextDisabled = formFields.some(
+    (field) => !formData[field.id] && !field.optional
+  );
+
+  return (
+    <div className="pt-[8rem]">
+      <p className="font-[800] mb-[1rem] text-center">
+        Indigene Enrollment Form
+      </p>
+      <div className="bg-white custom flex flex-col gap-y-[2rem] rounded-[1rem] mx-auto p-[2.5rem] w-[45rem] sm:w-auto">
+        <FormGenerator
+          fields={formFields}
+          formData={formData}
+          setFormData={setFormData}
+        />
+
+        {/* Privacy Policy Agreement Section */}
+        <div className="space-y-4">
+          <div className="flex items-start space-x-3">
+            <input
+              type="checkbox"
+              id="termsAgreement"
+              checked={agreedToTerms}
+              onChange={(e) => setAgreedToTerms(e.target.checked)}
+              className="mt-1 h-4 w-4 text-[#002E20] focus:ring-[#002E20] border-gray-300 rounded"
+            />
+            <label
+              htmlFor="termsAgreement"
+              className="text-[1.2rem] leading-relaxed"
+            >
+              By checking this box and clicking "Submit" to complete your
+              registration, I agree to{" "}
+              <Link
+                href=""
+                className="text-[#002E20] font-semibold hover:underline"
+              >
+                ọ́ffà-Nimi's Terms of Use
+              </Link>{" "}
+              and{" "}
+              <Link
+                href=""
+                className="text-[#002E20] font-semibold hover:underline"
+              >
+                Privacy Policy.
+              </Link>
+            </label>
+          </div>
+        </div>
+
+        <div className="flex justify-between">
+          <Button
+            className="bg-[#B0FFAB] px-[3.5rem] py-[2rem] rounded-[.5rem] text-[#002E20] hover:bg-[#002E20] hover:text-[#C8FFC4] font-[700]"
+            onClick={() => setStep((prevStep) => prevStep - 1)}
+          >
+            Back
+          </Button>
+
+          <Progressbar text={"5 / 5"} percent={100} />
 
           <Button
             className="bg-[#002E20] px-[3.5rem] py-[2rem] hover:bg-[#B0FFAB] hover:text-[#002E20] rounded-[.5rem] text-[#C8FFC4] font-[700]"
@@ -584,7 +758,7 @@ const FourthStep = (props) => {
                 nin: NIN,
               })
             }
-            disabled={isNextDisabled}
+            disabled={isNextDisabled || !agreedToTerms}
           >
             Submit
             {loading && (
