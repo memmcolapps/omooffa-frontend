@@ -573,17 +573,6 @@ const FourthStep = (props) => {
           )}
         </div>
 
-        <p className="text-[1.2rem]">
-          By clicking on “Submit” to complete your registration you agree to{" "}
-          <Link href="" className="text-[#002E20]">
-            ọ́ffà-Nimi’s Terms of Use
-          </Link>{" "}
-          and{" "}
-          <Link href="" className="text-[#002E20]">
-            Privacy Policy.
-          </Link>
-        </p>
-
         <div className="flex justify-between">
           <Button
             className="bg-[#B0FFAB] px-[3.5rem] py-[2rem] rounded-[.5rem] text-[#002E20] hover:bg-[#002E20] hover:text-[#C8FFC4] font-[700]"

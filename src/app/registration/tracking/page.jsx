@@ -31,7 +31,7 @@ const Tracking = () => {
     <section className="bg-[#EFFFEE] min-h-[100vh] sm:px-[2.5rem]">
       <ToastContainer />
       {data.message ? (
-        <OffaNimiForm data={data.user.dataValues} />
+        <OffaNimiForm data={data.user} />
       ) : (
         <TrackInput data={data} loading={loading} getUserInfo={getUserInfo} />
       )}
@@ -188,7 +188,7 @@ const OffaNimiForm = ({ data }) => {
                   title={"DOB"}
                   cardHeader={true}
                   capitalize={true}
-                  content={data?.ninData?.dob ?? "Not Available"}
+                  content={data.info.dob ?? "Not Available"}
                 />
               </div>
             </div>
@@ -222,6 +222,59 @@ const OffaNimiForm = ({ data }) => {
               title={"Town of Residence"}
               capitalize={true}
               content={data.cityOfResidence}
+            />
+          </div>
+          <div className="flex px-[4rem] gap-[5rem] py-[2rem] sm:hidden border-b border-b-[#E1E1E1]">
+            <Info
+              title={"Father's Name"}
+              capitalize={true}
+              content={data?.info?.fathersName ?? "Nil"}
+            />
+            <Info
+              title={"Father's Place of Birth"}
+              capitalize={true}
+              content={data?.info?.fathersPlaceOfBirth ?? "Nil"}
+            />
+            <Info
+              title={"Father's Phone Number"}
+              capitalize={true}
+              content={data?.info?.fathersPhoneNumber ?? "Nil"}
+            />
+          </div>
+
+          <div className="flex px-[4rem] gap-[5rem] py-[2rem] sm:hidden border-b border-b-[#E1E1E1]">
+            <Info
+              title={"Mother's Name"}
+              capitalize={true}
+              content={data?.info?.mothersName ?? "Nil"}
+            />
+            <Info
+              title={"Mother's Place of Birth"}
+              capitalize={true}
+              content={data?.info?.mothersPlaceOfBirth ?? "Nil"}
+            />
+            <Info
+              title={"Mother's Phone Number"}
+              capitalize={true}
+              content={data?.info?.mothersPhoneNumber ?? "Nil"}
+            />
+          </div>
+
+          <div className="flex px-[4rem] gap-[5rem] py-[2rem] sm:hidden border-b border-b-[#E1E1E1]">
+            <Info
+              title={"Mother's Father Name"}
+              capitalize={true}
+              content={data?.info?.mothersFatherName ?? "Nil"}
+            />
+            <Info
+              title={"Mother's Home Town"}
+              capitalize={true}
+              content={data?.info?.mothersHomeTown ?? "Nil"}
+            />
+            <Info
+              title={"Mother's Compound"}
+              capitalize={true}
+              content={data?.info?.mothersCompound ?? "Nil"}
             />
           </div>
 
@@ -367,6 +420,53 @@ const OffaNimiForm = ({ data }) => {
                   content={data.emergencyContactNumber}
                 />
               </div>
+            </div>
+            <div className="flex flex-col gap-[2rem] py-[2rem] border-b border-b-[#E1E1E1]">
+              <Info
+                title={"Father's Name"}
+                capitalize={true}
+                content={data?.info?.fathersName ?? "Nil"}
+              />
+              <Info
+                title={"Father's Place of Birth"}
+                capitalize={true}
+                content={data?.info?.fathersPlaceOfBirth ?? "Nil"}
+              />
+              <Info
+                title={"Father's Phone Number"}
+                capitalize={true}
+                content={data?.info?.fathersPhoneNumber ?? "Nil"}
+              />
+              <Info
+                title={"Mother's Name"}
+                capitalize={true}
+                content={data?.info?.mothersName ?? "Nil"}
+              />
+              <Info
+                title={"Mother's Place of Birth"}
+                capitalize={true}
+                content={data?.info?.mothersPlaceOfBirth ?? "Nil"}
+              />
+              <Info
+                title={"Mother's Phone Number"}
+                capitalize={true}
+                content={data?.info?.mothersPhoneNumber ?? "Nil"}
+              />
+              <Info
+                title={"Mother's Father Name"}
+                capitalize={true}
+                content={data?.info?.mothersFatherName ?? "Nil"}
+              />
+              <Info
+                title={"Mother's Home Town"}
+                capitalize={true}
+                content={data?.info?.mothersHomeTown ?? "Nil"}
+              />
+              <Info
+                title={"Mother's Compound"}
+                capitalize={true}
+                content={data?.info?.mothersCompound ?? "Nil"}
+              />
             </div>
             <div className="flex flex-col gap-[2rem] py-[2rem]">
               <Info
