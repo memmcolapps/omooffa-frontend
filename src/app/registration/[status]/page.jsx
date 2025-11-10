@@ -136,7 +136,7 @@ const Verify = ({ setStep, setNIN, NIN }) => {
           placeholder="Enter Valid NIN"
         />
         <Button
-          disabled={loading || NIN.length < 11}
+          disabled={loading || NIN === null || NIN.length < 11}
           onClick={() => validateNIN(NIN)}
           className="w-full mt-[2.8rem] py-[2rem] rounded-[.5rem] bg-[#002B1E] font-[800] text-[#C8FFC4]"
         >
