@@ -499,6 +499,30 @@ const FourthStep = (props) => {
       placeholder: "Minimum 8 characters",
       optional: false,
     },
+    {
+      id: "religon",
+      label: "Religion",
+      type: "select",
+      placeholder: "",
+      options: ["Islam", "Christianity", "Traditional Religion"],
+      optional: false,
+    },
+    {
+      id: "sex",
+      label: "Sex",
+      type: "select",
+      placeholder: "",
+      options: ["Male", "Female"],
+      optional: false,
+    },
+    {
+      id: "bloodGroup",
+      label: "Blood Group",
+      type: "select",
+      placeholder: "",
+      options: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+      optional: false,
+    },
   ];
 
   const isNextDisabled =
