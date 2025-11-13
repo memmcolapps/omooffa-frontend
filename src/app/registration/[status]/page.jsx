@@ -478,6 +478,13 @@ const FourthStep = (props) => {
       optional: false,
     },
     {
+      id: "secondPhoneNumber",
+      label: "Second Phone Number",
+      type: "number",
+      placeholder: "+2348035869013",
+      optional: true,
+    },
+    {
       id: "physicalChallenges",
       label: "Do you have any Physical Challenges?",
       type: "select",
