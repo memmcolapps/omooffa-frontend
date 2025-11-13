@@ -291,6 +291,10 @@ const OffaNimiForm = ({ data }) => {
                 content={data.compoundName ?? "Nil"}
               />
               <Info title={"Phone Number"} content={data.phoneNumber} />
+              <Info
+                title={"Second Phone Number"}
+                content={data?.info?.secondPhoneNumber ?? "Nil"}
+              />
             </div>
             <div className="flex flex-col  max-w-[19rem] sm:max-w-[12rem] gap-[3rem]">
               <Info
@@ -340,6 +344,21 @@ const OffaNimiForm = ({ data }) => {
               />
 
               <Info title={"Genotype"} content={data.genotype} />
+              <Info
+                title={"Religion"}
+                capitalize={true}
+                content={data?.info?.religon ?? data?.info?.religion ?? "Nil"}
+              />
+              <Info
+                title={"Sex"}
+                capitalize={true}
+                content={data?.info?.sex ?? "Nil"}
+              />
+              <Info
+                title={"Blood Group"}
+                capitalize={true}
+                content={data?.info?.bloodGroup ?? "Nil"}
+              />
             </div>
             <div className="flex flex-col  max-w-[19rem] sm:max-w-[12rem] gap-[3rem]">
               <Info
@@ -364,9 +383,13 @@ const OffaNimiForm = ({ data }) => {
                 capitalize={true}
                 content={data.verificationStatus}
               />
-              <Info title={"Current E-mail Address"} content={data.email} />
+              <Info
+                title={"Current E-mail Address"}
+                content={data.email ?? "Nil"}
+              />
             </div>
           </div>
+          <div className="flex px-[4rem] sm:hidden sm:px-[1.5rem] border-b border-b-[[#E1E1E1] justify-between py-[2rem] pb-[2rwm]"></div>
 
           <div className="hidden sm:flex  px-[1.5rem] flex-col">
             <div className="sm:flex flex-col py-[3rem] border-b border-b-[#E1E1E1] gap-[2.5rem]">
@@ -468,6 +491,7 @@ const OffaNimiForm = ({ data }) => {
                 content={data?.info?.mothersCompound ?? "Nil"}
               />
             </div>
+
             <div className="flex flex-col gap-[2rem] py-[2rem]">
               <Info
                 title={"How are you in Offa Indigine"}
@@ -485,6 +509,21 @@ const OffaNimiForm = ({ data }) => {
                 content={data.adoptedParentWard ?? "Nil"}
               />
               <Info title={"Genotype"} content={data.genotype} />
+              <Info
+                title={"Religion"}
+                capitalize={true}
+                content={data?.info?.religon ?? data?.info?.religion ?? "Nil"}
+              />
+              <Info
+                title={"Sex"}
+                capitalize={true}
+                content={data?.info?.sex ?? "Nil"}
+              />
+              <Info
+                title={"Blood Group"}
+                capitalize={true}
+                content={data?.info?.bloodGroup ?? "Nil"}
+              />
               <Info
                 title={"Adoptee’s Compound"}
                 capitalize={true}
