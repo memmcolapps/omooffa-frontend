@@ -5,7 +5,7 @@ const Mission = () => {
   const content = {
     title: "Our Mission",
     paragraph:
-      "A united ọ́ffà, where all indigenes are recognized, connected, and contribute to the development of a stronger, more prosperous community.",
+      "To build a united community where all indigenes are involved in the development and prosperity of Offa local Government Area. To uphold the indigenes virtues of dignity, integrity and discipline",
     btnText: "Join the Mission",
     image: "/about/tumb.png",
   };
