@@ -375,22 +375,6 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
 const ThirdStep = ({ setStep, setFormData, formData }) => {
   const formFields = [
     {
-      id: "indigeneByWho",
-      label: "How are you an Offa Indigene?",
-      type: "select",
-      placeholder: "",
-      options: [
-        "By Father and Mother",
-        "By Mother only",
-        "By Father only",
-        "By Adoption",
-        "By Birth",
-        "By Residence",
-        "By Marriage",
-      ],
-      optional: false,
-    },
-    {
       id: "adoptedParentName",
       label: "Name of Adoptee (Optional/Ignore if not adopted)",
       type: "text",
@@ -479,7 +463,7 @@ const FourthStep = (props) => {
     },
     {
       id: "secondPhoneNumber",
-      label: "Second Phone Number",
+      label: "Second Phone Number (Optional)",
       type: "number",
       placeholder: "+2348035869013",
       optional: true,
@@ -497,7 +481,7 @@ const FourthStep = (props) => {
       label: "Bank Name",
       type: "select",
       placeholder: "",
-      options: ["First Bank", "Keystone", "Zenith Bank"],
+      options: ["Zenith Bank"],
     },
     {
       id: "password",
@@ -660,6 +644,13 @@ const FifthStep = (props) => {
       optional: false,
     },
     {
+      id: "fathersPhoneNumber",
+      label: "Father's Phone Number (Optional)",
+      type: "number",
+      placeholder: "Father's Phone Number",
+      optional: true,
+    },
+    {
       id: "mothersName",
       label: "Mother's Name",
       type: "text",
@@ -674,11 +665,11 @@ const FifthStep = (props) => {
       optional: false,
     },
     {
-      id: "fathersPhoneNumber",
-      label: "Father's Phone Number",
-      type: "number",
-      placeholder: "Father's Phone Number",
-      optional: true,
+      id: "mothersCompound",
+      label: "Mother's Compound",
+      type: "text",
+      placeholder: "Mother's Compound",
+      optional: false,
     },
     {
       id: "mothersHomeTown",
@@ -694,19 +685,28 @@ const FifthStep = (props) => {
       placeholder: "Mother's Father Name",
       optional: false,
     },
-    {
-      id: "mothersCompound",
-      label: "Mother's Compound",
-      type: "text",
-      placeholder: "Mother's Compound",
-      optional: false,
-    },
+
     {
       id: "mothersPhoneNumber",
-      label: "Mother's Phone Number",
+      label: "Mother's Phone Number (Optional)",
       type: "number",
       placeholder: "Mother's Phone Number",
       optional: true,
+    },
+    {
+      id: "indigeneByWho",
+      label: "How are you an Offa Indigene?",
+      type: "select",
+      placeholder: "",
+      options: [
+        "By Father and Mother",
+        "By Mother only",
+        "By Father only",
+        "By Adoption",
+        "By Residence",
+        "By Marriage",
+      ],
+      optional: false,
     },
   ];
   const isNextDisabled = formFields.some(
