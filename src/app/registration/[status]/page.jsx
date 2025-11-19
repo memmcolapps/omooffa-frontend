@@ -630,6 +630,13 @@ const FifthStep = (props) => {
       optional: false,
     },
     {
+      id: "parentNiN",
+      label: "Parent's NIN (Optional/Ignore if over 18)",
+      type: "number",
+      placeholder: "Parent's NIN",
+      optional: true,
+    },
+    {
       id: "fathersName",
       label: "Father's Name",
       type: "text",
