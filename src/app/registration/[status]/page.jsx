@@ -318,7 +318,15 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
         label: "Employment Status",
         type: "select",
         placeholder: "",
-        options: ["employed", "unemployed"],
+        options: [
+          "Employed",
+          "Self-employed",
+          "Part-time",
+          "Contract",
+          "Unemployed",
+          "Student",
+          "Retired",
+        ],
         optional: false,
       },
       {

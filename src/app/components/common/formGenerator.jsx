@@ -60,7 +60,7 @@ const FormGenerator = ({ fields, setFormData, formData, onCountryChange }) => {
               onChange={(e) =>
                 setFormData((prevFormData) => ({
                   ...prevFormData,
-                  [field.id]: e.target.value.toLowerCase(),
+                  [field.id]: e.target.value,
                 }))
               }
               disabled={isAdoptionFieldDisabled(field.id)}
