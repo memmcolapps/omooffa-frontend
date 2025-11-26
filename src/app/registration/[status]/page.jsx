@@ -67,7 +67,7 @@ const Register = () => {
     sex: "",
     bloodGroup: "",
     secondPhoneNumber: null,
-    parentNiN: null,
+    parentNin: null,
     maritalStatus: "",
     cardType: "",
     title: "",
@@ -682,7 +682,7 @@ const FifthStep = (props) => {
       optional: false,
     },
     {
-      id: "parentNiN",
+      id: "parentNin",
       label: "Parent's NIN (Optional/Ignore if over 18)",
       type: "number",
       placeholder: "Parent's NIN",
