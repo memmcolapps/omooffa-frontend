@@ -63,6 +63,14 @@ const Register = () => {
     mothersFatherName: "",
     mothersCompound: "",
     mothersPhoneNumber: "",
+    religon: "",
+    sex: "",
+    bloodGroup: "",
+    secondPhoneNumber: null,
+    parentNiN: null,
+    maritalStatus: "",
+    cardType: "",
+    title: "",
   });
 
   const steps = [
@@ -181,6 +189,14 @@ const FirstStep = ({ setStep, setFormData, formData }) => {
   }, [formData.countryOfResidence]);
 
   const formFields = [
+    {
+      id: "title",
+      label: "Title",
+      type: "select",
+      placeholder: "Select Your Title",
+      options: ["MR", "MRS", "MISS", "DR", "PROF", "ENGR", "CHIEF"],
+      optional: false,
+    },
     {
       id: "lastName",
       label: "Last Name",
@@ -334,7 +350,22 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
         label: "Profession",
         type: "select",
         placeholder: "",
-        options: popularProfessions,
+        options: [
+          "BANKING",
+          "TELECOMMUNICATION",
+          "OIL AND GAS",
+          "INFORMATION TECHNOLOGY",
+          "LEGAL AFFAIRS",
+          "AIRLINES",
+          "ENGINEERING",
+          "MANUFACTURING",
+          "ACADEMIC",
+          "TRADING",
+          "MEDICAL",
+          "CIVIL SERVICE",
+          "MILITARY",
+          "OTHERS",
+        ],
         optional: false,
       },
     ],
@@ -382,6 +413,14 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
 
 const ThirdStep = ({ setStep, setFormData, formData }) => {
   const formFields = [
+    {
+      id: "maritalStatus",
+      label: "Marital Status",
+      type: "select",
+      placeholder: "",
+      options: ["Single", "Married", "Widowed", "Divorced"],
+      optional: false,
+    },
     {
       id: "adoptedParentName",
       label: "Name of Adoptee (Optional/Ignore if not adopted)",
@@ -485,11 +524,16 @@ const FourthStep = (props) => {
       optional: false,
     },
     {
-      id: "bankName",
-      label: "Bank Name",
+      id: "cardType",
+      label: "Card Type",
       type: "select",
       placeholder: "",
-      options: ["Zenith Bank"],
+      options: [
+        "MC DEBIT (NGN) STANDARD PAYPASS",
+        "VISA DEBIT (NGN) STD",
+        "VERVE DEBIT (NGN) STD",
+      ],
+      optional: false,
     },
     {
       id: "password",
