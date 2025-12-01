@@ -298,7 +298,7 @@ export const compounds = [
   "Olose-Oke",
   "Olowo-Soke",
   "Oloya Bamleku",
-  "Oloya-Arikoloba",
+  "Oloya-Arikolobo",
   "Oloya-Ori-Okuta",
   "oluawo Omolaran",
   "Oluoti",
