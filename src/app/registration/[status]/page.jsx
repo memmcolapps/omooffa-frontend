@@ -422,6 +422,21 @@ const ThirdStep = ({ setStep, setFormData, formData }) => {
       optional: false,
     },
     {
+      id: "indigeneByWho",
+      label: "How are you an Offa Indigene?",
+      type: "select",
+      placeholder: "",
+      options: [
+        "By Father and Mother",
+        "By Mother only",
+        "By Father only",
+        "By Adoption",
+        "By Residence",
+        "By Marriage",
+      ],
+      optional: false,
+    },
+    {
       id: "adoptedParentName",
       label: "Name of Adoptee (Optional/Ignore if not adopted)",
       type: "text",
@@ -751,21 +766,6 @@ const FifthStep = (props) => {
       type: "number",
       placeholder: "Mother's Phone Number",
       optional: true,
-    },
-    {
-      id: "indigeneByWho",
-      label: "How are you an Offa Indigene?",
-      type: "select",
-      placeholder: "",
-      options: [
-        "By Father and Mother",
-        "By Mother only",
-        "By Father only",
-        "By Adoption",
-        "By Residence",
-        "By Marriage",
-      ],
-      optional: false,
     },
   ];
   const isNextDisabled = formFields.some(
