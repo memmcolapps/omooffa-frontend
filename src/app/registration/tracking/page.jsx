@@ -31,7 +31,7 @@ const Tracking = () => {
     <section className="bg-[#EFFFEE] min-h-[100vh] sm:px-[2.5rem]">
       <ToastContainer />
       {data.message ? (
-        <OffaNimiForm data={data.user.dataValues} />
+        <OffaNimiForm data={data.user} />
       ) : (
         <TrackInput data={data} loading={loading} getUserInfo={getUserInfo} />
       )}
@@ -188,7 +188,7 @@ const OffaNimiForm = ({ data }) => {
                   title={"DOB"}
                   cardHeader={true}
                   capitalize={true}
-                  content={data?.ninData?.dob ?? "Not Available"}
+                  content={data.info.dob ?? "Not Available"}
                 />
               </div>
             </div>
@@ -224,6 +224,59 @@ const OffaNimiForm = ({ data }) => {
               content={data.cityOfResidence}
             />
           </div>
+          <div className="flex px-[4rem] gap-[5rem] py-[2rem] sm:hidden border-b border-b-[#E1E1E1]">
+            <Info
+              title={"Father's Name"}
+              capitalize={true}
+              content={data?.info?.fathersName ?? "Nil"}
+            />
+            <Info
+              title={"Father's Place of Birth"}
+              capitalize={true}
+              content={data?.info?.fathersPlaceOfBirth ?? "Nil"}
+            />
+            <Info
+              title={"Father's Phone Number"}
+              capitalize={true}
+              content={data?.info?.fathersPhoneNumber ?? "Nil"}
+            />
+          </div>
+
+          <div className="flex px-[4rem] gap-[5rem] py-[2rem] sm:hidden border-b border-b-[#E1E1E1]">
+            <Info
+              title={"Mother's Name"}
+              capitalize={true}
+              content={data?.info?.mothersName ?? "Nil"}
+            />
+            <Info
+              title={"Mother's Place of Birth"}
+              capitalize={true}
+              content={data?.info?.mothersPlaceOfBirth ?? "Nil"}
+            />
+            <Info
+              title={"Mother's Phone Number"}
+              capitalize={true}
+              content={data?.info?.mothersPhoneNumber ?? "Nil"}
+            />
+          </div>
+
+          <div className="flex px-[4rem] gap-[5rem] py-[2rem] sm:hidden border-b border-b-[#E1E1E1]">
+            <Info
+              title={"Mother's Father Name"}
+              capitalize={true}
+              content={data?.info?.mothersFatherName ?? "Nil"}
+            />
+            <Info
+              title={"Mother's Home Town"}
+              capitalize={true}
+              content={data?.info?.mothersHomeTown ?? "Nil"}
+            />
+            <Info
+              title={"Mother's Compound"}
+              capitalize={true}
+              content={data?.info?.mothersCompound ?? "Nil"}
+            />
+          </div>
 
           <div className="flex px-[4rem] sm:hidden sm:px-[1.5rem] border-b border-b-[#E1E1E1] justify-between py-[2rem]">
             <div className="flex flex-col  max-w-[19rem] gap-[3rem]">
@@ -238,6 +291,10 @@ const OffaNimiForm = ({ data }) => {
                 content={data.compoundName ?? "Nil"}
               />
               <Info title={"Phone Number"} content={data.phoneNumber} />
+              <Info
+                title={"Second Phone Number"}
+                content={data?.info?.secondPhoneNumber ?? "Nil"}
+              />
             </div>
             <div className="flex flex-col  max-w-[19rem] sm:max-w-[12rem] gap-[3rem]">
               <Info
@@ -287,6 +344,21 @@ const OffaNimiForm = ({ data }) => {
               />
 
               <Info title={"Genotype"} content={data.genotype} />
+              <Info
+                title={"Religion"}
+                capitalize={true}
+                content={data?.info?.religon ?? data?.info?.religion ?? "Nil"}
+              />
+              <Info
+                title={"Sex"}
+                capitalize={true}
+                content={data?.info?.sex ?? "Nil"}
+              />
+              <Info
+                title={"Blood Group"}
+                capitalize={true}
+                content={data?.info?.bloodGroup ?? "Nil"}
+              />
             </div>
             <div className="flex flex-col  max-w-[19rem] sm:max-w-[12rem] gap-[3rem]">
               <Info
@@ -311,9 +383,13 @@ const OffaNimiForm = ({ data }) => {
                 capitalize={true}
                 content={data.verificationStatus}
               />
-              <Info title={"Current E-mail Address"} content={data.email} />
+              <Info
+                title={"Current E-mail Address"}
+                content={data.email ?? "Nil"}
+              />
             </div>
           </div>
+          <div className="flex px-[4rem] sm:hidden sm:px-[1.5rem] border-b border-b-[[#E1E1E1] justify-between py-[2rem] pb-[2rwm]"></div>
 
           <div className="hidden sm:flex  px-[1.5rem] flex-col">
             <div className="sm:flex flex-col py-[3rem] border-b border-b-[#E1E1E1] gap-[2.5rem]">
@@ -368,6 +444,54 @@ const OffaNimiForm = ({ data }) => {
                 />
               </div>
             </div>
+            <div className="flex flex-col gap-[2rem] py-[2rem] border-b border-b-[#E1E1E1]">
+              <Info
+                title={"Father's Name"}
+                capitalize={true}
+                content={data?.info?.fathersName ?? "Nil"}
+              />
+              <Info
+                title={"Father's Place of Birth"}
+                capitalize={true}
+                content={data?.info?.fathersPlaceOfBirth ?? "Nil"}
+              />
+              <Info
+                title={"Father's Phone Number"}
+                capitalize={true}
+                content={data?.info?.fathersPhoneNumber ?? "Nil"}
+              />
+              <Info
+                title={"Mother's Name"}
+                capitalize={true}
+                content={data?.info?.mothersName ?? "Nil"}
+              />
+              <Info
+                title={"Mother's Place of Birth"}
+                capitalize={true}
+                content={data?.info?.mothersPlaceOfBirth ?? "Nil"}
+              />
+              <Info
+                title={"Mother's Phone Number"}
+                capitalize={true}
+                content={data?.info?.mothersPhoneNumber ?? "Nil"}
+              />
+              <Info
+                title={"Mother's Father Name"}
+                capitalize={true}
+                content={data?.info?.mothersFatherName ?? "Nil"}
+              />
+              <Info
+                title={"Mother's Home Town"}
+                capitalize={true}
+                content={data?.info?.mothersHomeTown ?? "Nil"}
+              />
+              <Info
+                title={"Mother's Compound"}
+                capitalize={true}
+                content={data?.info?.mothersCompound ?? "Nil"}
+              />
+            </div>
+
             <div className="flex flex-col gap-[2rem] py-[2rem]">
               <Info
                 title={"How are you in Offa Indigine"}
@@ -385,6 +509,21 @@ const OffaNimiForm = ({ data }) => {
                 content={data.adoptedParentWard ?? "Nil"}
               />
               <Info title={"Genotype"} content={data.genotype} />
+              <Info
+                title={"Religion"}
+                capitalize={true}
+                content={data?.info?.religon ?? data?.info?.religion ?? "Nil"}
+              />
+              <Info
+                title={"Sex"}
+                capitalize={true}
+                content={data?.info?.sex ?? "Nil"}
+              />
+              <Info
+                title={"Blood Group"}
+                capitalize={true}
+                content={data?.info?.bloodGroup ?? "Nil"}
+              />
               <Info
                 title={"Adoptee’s Compound"}
                 capitalize={true}

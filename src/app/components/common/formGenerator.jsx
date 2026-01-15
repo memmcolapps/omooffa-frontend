@@ -60,7 +60,7 @@ const FormGenerator = ({ fields, setFormData, formData, onCountryChange }) => {
               onChange={(e) =>
                 setFormData((prevFormData) => ({
                   ...prevFormData,
-                  [field.id]: e.target.value.toLowerCase(),
+                  [field.id]: e.target.value,
                 }))
               }
               disabled={isAdoptionFieldDisabled(field.id)}
@@ -90,6 +90,23 @@ const FormGenerator = ({ fields, setFormData, formData, onCountryChange }) => {
             <Input
               id={field.id}
               type="password"
+              value={formData[field.id] || ""}
+              onChange={(e) =>
+                setFormData((prevFormData) => ({
+                  ...prevFormData,
+                  [field.id]: e.target.value,
+                }))
+              }
+              disabled={isAdoptionFieldDisabled(field.id)}
+              className="h-[3.8rem] text-[1.2rem] text-[#07200B] font-[600] placeholder:font-[400] placeholder:text-[#B6B9B8]"
+              placeholder={field.placeholder}
+            />
+          )}
+
+          {field.type === "date" && (
+            <Input
+              id={field.id}
+              type="date"
               value={formData[field.id] || ""}
               onChange={(e) =>
                 setFormData((prevFormData) => ({

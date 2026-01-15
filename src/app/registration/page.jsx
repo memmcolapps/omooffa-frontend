@@ -7,10 +7,6 @@ const Registration = () => {
       link: "/registration/HASNIN",
     },
     {
-      name: "Register with Parent’s NIN If you are less than 16 years.",
-      link: "/registration/PARENTNIN",
-    },
-    {
       name: "No NIN at all",
       link: "/registration/NONIN",
     },

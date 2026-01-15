@@ -52,6 +52,25 @@ const Register = () => {
     userType: status,
     password: "",
     profilePicUrl: "",
+    dob: "",
+    placeOfBirth: "",
+    fathersName: "",
+    fathersPlaceOfBirth: "",
+    mothersName: "",
+    mothersPlaceOfBirth: "",
+    fathersPhoneNumber: "",
+    mothersHomeTown: "",
+    mothersFatherName: "",
+    mothersCompound: "",
+    mothersPhoneNumber: "",
+    religon: "",
+    sex: "",
+    bloodGroup: "",
+    secondPhoneNumber: null,
+    parentNin: null,
+    maritalStatus: "",
+    cardType: "",
+    title: "",
   });
 
   const steps = [
@@ -73,6 +92,15 @@ const Register = () => {
       formData={formData}
     />,
     <FourthStep
+      setStep={setStep}
+      CreateUser={CreateUser}
+      loading={loading}
+      setFormData={setFormData}
+      formData={formData}
+      data={data}
+      NIN={NIN}
+    />,
+    <FifthStep
       setStep={setStep}
       CreateUser={CreateUser}
       loading={loading}
@@ -116,7 +144,7 @@ const Verify = ({ setStep, setNIN, NIN }) => {
           placeholder="Enter Valid NIN"
         />
         <Button
-          disabled={loading || NIN.length < 11}
+          disabled={loading || NIN === null || NIN.length < 11}
           onClick={() => validateNIN(NIN)}
           className="w-full mt-[2.8rem] py-[2rem] rounded-[.5rem] bg-[#002B1E] font-[800] text-[#C8FFC4]"
         >
@@ -131,6 +159,231 @@ const Verify = ({ setStep, setNIN, NIN }) => {
 };
 
 const FirstStep = ({ setStep, setFormData, formData }) => {
+  const formFields = [
+    {
+      id: "title",
+      label: "Title",
+      type: "select",
+      placeholder: "Select Your Title",
+      options: ["MR", "MRS", "MISS", "DR", "PROF", "ENGR", "CHIEF"],
+      optional: false,
+    },
+    {
+      id: "lastName",
+      label: "Last Name",
+      type: "text",
+      placeholder: "Last Name",
+      optional: false,
+    },
+    {
+      id: "firstName",
+      label: "First Name",
+      type: "text",
+      placeholder: "First Name",
+      optional: false,
+    },
+    {
+      id: "middleName",
+      label: "Middle Name (optional)",
+      type: "text",
+      placeholder: "Middle Name",
+      optional: true,
+    },
+    {
+      id: "dob",
+      label: "Date of Birth",
+      type: "date",
+      placeholder: "Date",
+      optional: false,
+    },
+    {
+      id: "placeOfBirth",
+      label: "Place of Birth",
+      type: "text",
+      placeholder: "Place",
+      optional: false,
+    },
+    {
+      id: "phoneNumber",
+      label: "Phone Number",
+      type: "number",
+      placeholder: "+2348035869013",
+      optional: false,
+    },
+    {
+      id: "secondPhoneNumber",
+      label: "Second Phone Number (Optional)",
+      type: "number",
+      placeholder: "+2348035869013",
+      optional: true,
+    },
+  ];
+
+  const isNextDisabled = formFields.some(
+    (field) => !formData[field.id] && !field.optional
+  );
+
+  return (
+    <div className="pt-[8rem]">
+      <p className="font-[800] mb-[1rem] text-center">
+        Indigene Enrollment Form
+      </p>
+      <div className="bg-white custom flex flex-col gap-y-[2rem] rounded-[1rem] mx-auto p-[2.5rem] w-[45rem] sm:w-auto">
+        <FormGenerator
+          fields={formFields}
+          formData={formData}
+          setFormData={setFormData}
+        />
+
+        <div className="flex justify-between">
+          <Progressbar text={"1 / 5"} percent={20} />
+          <Button
+            className="bg-[#002E20] px-[3.5rem] py-[2rem] rounded-[.5rem] text-[#C8FFC4] font-[700] ml-auto"
+            onClick={() => setStep((prevStep) => prevStep + 1)}
+            disabled={isNextDisabled}
+          >
+            Next
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const SecondStep = ({ setStep, setFormData, formData }) => {
+  const formFields = useMemo(
+    () => [
+      {
+        id: "wardName",
+        label: "Compound District Name",
+        type: "select",
+        placeholder: "",
+        options: wards.map((ward) => ward),
+        optional: false,
+      },
+      {
+        id: "compoundName",
+        label: "Compound’s Name",
+        type: "select",
+        placeholder: "",
+        options: compounds.map((compound) => compound),
+        optional: false,
+      },
+      {
+        id: "parentNin",
+        label: "Parent's NIN (Optional/Ignore if over 18)",
+        type: "number",
+        placeholder: "Parent's NIN",
+        optional: true,
+      },
+      {
+        id: "fathersName",
+        label: "Father's Name",
+        type: "text",
+        placeholder: "Father's Name",
+        optional: false,
+      },
+      {
+        id: "fathersPlaceOfBirth",
+        label: "Father's Place of Birth",
+        type: "text",
+        placeholder: "Father's Place of Birth",
+        optional: false,
+      },
+      {
+        id: "fathersPhoneNumber",
+        label: "Father's Phone Number (Optional)",
+        type: "number",
+        placeholder: "Father's Phone Number",
+        optional: true,
+      },
+      {
+        id: "mothersName",
+        label: "Mother's Name",
+        type: "text",
+        placeholder: "Mother's Name",
+        optional: false,
+      },
+      {
+        id: "mothersPlaceOfBirth",
+        label: "Mother's Place of Birth",
+        type: "text",
+        placeholder: "Mother's Place of Birth",
+        optional: false,
+      },
+      {
+        id: "mothersCompound",
+        label: "Mother's Compound",
+        type: "text",
+        placeholder: "Mother's Compound",
+        optional: false,
+      },
+      {
+        id: "mothersHomeTown",
+        label: "Mother's Home Town",
+        type: "text",
+        placeholder: "Mother's Home Town",
+        optional: false,
+      },
+      {
+        id: "mothersFatherName",
+        label: "Mother's Father Name",
+        type: "text",
+        placeholder: "Mother's Father Name",
+        optional: false,
+      },
+
+      {
+        id: "mothersPhoneNumber",
+        label: "Mother's Phone Number (Optional)",
+        type: "number",
+        placeholder: "Mother's Phone Number",
+        optional: true,
+      },
+    ],
+    [formData]
+  );
+
+  const isNextDisabled = formFields.some(
+    (field) => !formData[field.id] && !field.optional
+  );
+
+  return (
+    <div className="pt-[8rem]">
+      <p className="font-[800] mb-[1rem] text-center">
+        Indigene Enrollment Form
+      </p>
+      <div className="bg-white custom flex flex-col gap-y-[2rem] rounded-[1rem] mx-auto p-[2.5rem] w-[45rem] sm:w-auto">
+        <FormGenerator
+          fields={formFields}
+          formData={formData}
+          setFormData={setFormData}
+        />
+
+        <div className="flex justify-between items-center">
+          <Button
+            className="bg-[#B0FFAB] px-[3.5rem] py-[2rem] rounded-[.5rem] text-[#002E20] hover:bg-[#002E20] hover:text-[#C8FFC4] font-[700]"
+            onClick={() => setStep((prevStep) => prevStep - 1)}
+          >
+            Back
+          </Button>
+
+          <Progressbar text={"2 / 5"} percent={40} />
+
+          <Button
+            className="bg-[#002E20] px-[3.5rem] py-[2rem] hover:bg-[#B0FFAB] hover:text-[#002E20] rounded-[.5rem] text-[#C8FFC4] font-[700]"
+            onClick={() => setStep((prevStep) => prevStep + 1)}
+            disabled={isNextDisabled}
+          >
+            Next
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ThirdStep = ({ setStep, setFormData, formData }) => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
 
@@ -159,29 +412,7 @@ const FirstStep = ({ setStep, setFormData, formData }) => {
       setStates([]);
     }
   }, [formData.countryOfResidence]);
-
   const formFields = [
-    {
-      id: "lastName",
-      label: "Last Name",
-      type: "text",
-      placeholder: "Last Name",
-      optional: false,
-    },
-    {
-      id: "firstName",
-      label: "First Name",
-      type: "text",
-      placeholder: "First Name",
-      optional: false,
-    },
-    {
-      id: "middleName",
-      label: "Middle Name (optional)",
-      type: "text",
-      placeholder: "Middle Name",
-      optional: true,
-    },
     {
       id: "countryOfResidence",
       label: "Current Country of Residence",
@@ -219,141 +450,27 @@ const FirstStep = ({ setStep, setFormData, formData }) => {
       placeholder: "Address",
       optional: false,
     },
-  ];
-
-  const isNextDisabled = formFields.some(
-    (field) => !formData[field.id] && !field.optional
-  );
-
-  return (
-    <div className="pt-[8rem]">
-      <p className="font-[800] mb-[1rem] text-center">
-        Indigene Enrollment Form
-      </p>
-      <div className="bg-white custom flex flex-col gap-y-[2rem] rounded-[1rem] mx-auto p-[2.5rem] w-[45rem] sm:w-auto">
-        <FormGenerator
-          fields={formFields}
-          formData={formData}
-          setFormData={setFormData}
-        />
-
-        <div className="flex justify-between">
-          <Progressbar text={"1 / 4"} percent={25} />
-          <Button
-            className="bg-[#002E20] px-[3.5rem] py-[2rem] rounded-[.5rem] text-[#C8FFC4] font-[700] ml-auto"
-            onClick={() => setStep((prevStep) => prevStep + 1)}
-            disabled={isNextDisabled}
-          >
-            Next
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const SecondStep = ({ setStep, setFormData, formData }) => {
-  const formFields = useMemo(
-    () => [
-      {
-        id: "wardName",
-        label: "Ward’s Name",
-        type: "select",
-        placeholder: "",
-        options: wards.map((ward) => ward),
-        optional: false,
-      },
-      {
-        id: "compoundName",
-        label: "Compound’s Name",
-        type: "select",
-        placeholder: "",
-        options: compounds.map((compound) => compound),
-        optional: false,
-      },
-
-      {
-        id: "email",
-        label: "Current E-mail Address (Optional)",
-        type: "text",
-        placeholder: "Email",
-        optional: true,
-      },
-      {
-        id: "emergencyContactName",
-        label: "Emergency Contact Name",
-        type: "text",
-        placeholder: "Emergency Contact",
-        optional: false,
-      },
-      {
-        id: "emergencyContactNumber",
-        label: "Emergency Contact Phone Number",
-        type: "number",
-        placeholder: "E.g +2348037117892",
-        optional: false,
-      },
-      {
-        id: "employmentStatus",
-        label: "Employment Status",
-        type: "select",
-        placeholder: "",
-        options: ["employed", "unemployed"],
-        optional: false,
-      },
-      {
-        id: "occupation",
-        label: "Profession",
-        type: "select",
-        placeholder: "",
-        options: popularProfessions,
-        optional: false,
-      },
-    ],
-    [formData]
-  );
-
-  const isNextDisabled = formFields.some(
-    (field) => !formData[field.id] && !field.optional
-  );
-
-  return (
-    <div className="pt-[8rem]">
-      <p className="font-[800] mb-[1rem] text-center">
-        Indigene Enrollment Form
-      </p>
-      <div className="bg-white custom flex flex-col gap-y-[2rem] rounded-[1rem] mx-auto p-[2.5rem] w-[45rem] sm:w-auto">
-        <FormGenerator
-          fields={formFields}
-          formData={formData}
-          setFormData={setFormData}
-        />
-
-        <div className="flex justify-between items-center">
-          <Button
-            className="bg-[#B0FFAB] px-[3.5rem] py-[2rem] rounded-[.5rem] text-[#002E20] hover:bg-[#002E20] hover:text-[#C8FFC4] font-[700]"
-            onClick={() => setStep((prevStep) => prevStep - 1)}
-          >
-            Back
-          </Button>
-
-          <Progressbar text={"2 / 4"} percent={50} />
-
-          <Button
-            className="bg-[#002E20] px-[3.5rem] py-[2rem] hover:bg-[#B0FFAB] hover:text-[#002E20] rounded-[.5rem] text-[#C8FFC4] font-[700]"
-            onClick={() => setStep((prevStep) => prevStep + 1)}
-            disabled={isNextDisabled}
-          >
-            Next
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ThirdStep = ({ setStep, setFormData, formData }) => {
-  const formFields = [
+    {
+      id: "email",
+      label: "Current E-mail Address (Optional)",
+      type: "text",
+      placeholder: "Email",
+      optional: true,
+    },
+    {
+      id: "emergencyContactName",
+      label: "Emergency Contact Name",
+      type: "text",
+      placeholder: "Emergency Contact",
+      optional: false,
+    },
+    {
+      id: "emergencyContactNumber",
+      label: "Emergency Contact Phone Number",
+      type: "number",
+      placeholder: "E.g +2348037117892",
+      optional: false,
+    },
     {
       id: "indigeneByWho",
       label: "How are you an Offa Indigene?",
@@ -364,46 +481,9 @@ const ThirdStep = ({ setStep, setFormData, formData }) => {
         "By Mother only",
         "By Father only",
         "By Adoption",
-        "By Birth",
         "By Residence",
         "By Marriage",
       ],
-      optional: false,
-    },
-    {
-      id: "adoptedParentName",
-      label: "Name of Adoptee (Optional/Ignore if not adopted)",
-      type: "text",
-      placeholder: "",
-      optional: true,
-    },
-    {
-      id: "adoptedParentCompound",
-      label: "Adoptee’s Compound (Optional/Ignore if not adopted)",
-      type: "text",
-      placeholder: "",
-      optional: true,
-    },
-    {
-      id: "adoptedParentWard",
-      label: "Adoptee’s Ward (Optional/Ignore if not adopted)",
-      type: "text",
-      placeholder: "",
-      optional: true,
-    },
-    {
-      id: "numOfCurrentDependants",
-      label: "Number of Current Dependent",
-      type: "number",
-      placeholder: "",
-      optional: false,
-    },
-    {
-      id: "genotype",
-      label: "Genotype",
-      type: "select",
-      placeholder: "",
-      options: ["AA", "AS", "SS", "AC", "SC", "CC"],
       optional: false,
     },
   ];
@@ -432,7 +512,7 @@ const ThirdStep = ({ setStep, setFormData, formData }) => {
             Back
           </Button>
 
-          <Progressbar text={"3 / 4"} percent={75} />
+          <Progressbar text={"3 / 5"} percent={60} />
 
           <Button
             className="bg-[#002E20] px-[3.5rem] py-[2rem] hover:bg-[#B0FFAB] hover:text-[#002E20] rounded-[.5rem] text-[#C8FFC4] font-[700]"
@@ -451,10 +531,63 @@ const FourthStep = (props) => {
   const { setStep, setFormData, formData, CreateUser, loading, NIN } = props;
   const formFields = [
     {
-      id: "phoneNumber",
-      label: "Phone Number",
-      type: "number",
-      placeholder: "+2348035869013",
+      id: "adoptedParentName",
+      label: "Name of Adoptee (Optional/Ignore if not adopted)",
+      type: "text",
+      placeholder: "",
+      optional: true,
+    },
+    {
+      id: "adoptedParentCompound",
+      label: "Adoptee’s Compound (Optional/Ignore if not adopted)",
+      type: "text",
+      placeholder: "",
+      optional: true,
+    },
+    {
+      id: "adoptedParentWard",
+      label: "Adoptee’s District Name (Optional/Ignore if not adopted)",
+      type: "text",
+      placeholder: "",
+      optional: true,
+    },
+    {
+      id: "employmentStatus",
+      label: "Employment Status",
+      type: "select",
+      placeholder: "",
+      options: [
+        "Employed",
+        "Self-employed",
+        "Part-time",
+        "Contract",
+        "Unemployed",
+        "Student",
+        "Retired",
+      ],
+      optional: false,
+    },
+    {
+      id: "occupation",
+      label: "Profession",
+      type: "select",
+      placeholder: "",
+      options: [
+        "BANKING",
+        "TELECOMMUNICATION",
+        "OIL AND GAS",
+        "INFORMATION TECHNOLOGY",
+        "LEGAL AFFAIRS",
+        "AIRLINES",
+        "ENGINEERING",
+        "MANUFACTURING",
+        "ACADEMIC",
+        "TRADING",
+        "MEDICAL",
+        "CIVIL SERVICE",
+        "MILITARY",
+        "OTHERS",
+      ],
       optional: false,
     },
     {
@@ -466,17 +599,27 @@ const FourthStep = (props) => {
       optional: false,
     },
     {
-      id: "bankName",
-      label: "Bank Name",
+      id: "maritalStatus",
+      label: "Marital Status",
       type: "select",
       placeholder: "",
-      options: ["First Bank", "Keystone", "Zenith Bank"],
+      options: ["Single", "Married", "Widowed", "Divorced"],
+      optional: false,
     },
     {
-      id: "password",
-      label: "Password",
-      type: "password",
-      placeholder: "Minimum 8 characters",
+      id: "religon",
+      label: "Religion",
+      type: "select",
+      placeholder: "",
+      options: ["Islam", "Christianity", "Traditional Religion"],
+      optional: false,
+    },
+    {
+      id: "sex",
+      label: "Sex",
+      type: "select",
+      placeholder: "",
+      options: ["Male", "Female"],
       optional: false,
     },
   ];
@@ -553,16 +696,139 @@ const FourthStep = (props) => {
           )}
         </div>
 
-        <p className="text-[1.2rem]">
-          By clicking on “Submit” to complete your registration you agree to{" "}
-          <Link href="" className="text-[#002E20]">
-            ọ́ffà-Nimi’s Terms of Use
-          </Link>{" "}
-          and{" "}
-          <Link href="" className="text-[#002E20]">
-            Privacy Policy.
-          </Link>
-        </p>
+        <div className="flex justify-between">
+          <Button
+            className="bg-[#B0FFAB] px-[3.5rem] py-[2rem] rounded-[.5rem] text-[#002E20] hover:bg-[#002E20] hover:text-[#C8FFC4] font-[700]"
+            onClick={() => setStep((prevStep) => prevStep - 1)}
+          >
+            Back
+          </Button>
+
+          <Progressbar text={"4 / 5"} percent={80} />
+
+          <Button
+            className="bg-[#002E20] px-[3.5rem] py-[2rem] hover:bg-[#B0FFAB] hover:text-[#002E20] rounded-[.5rem] text-[#C8FFC4] font-[700]"
+            onClick={() => setStep((prevStep) => prevStep + 1)}
+            disabled={isNextDisabled}
+          >
+            Next
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const FifthStep = (props) => {
+  const { setStep, setFormData, formData, CreateUser, loading, NIN } = props;
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const baseFields = [
+    {
+      id: "bloodGroup",
+      label: "Blood Group",
+      type: "select",
+      placeholder: "",
+      options: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+      optional: false,
+    },
+    {
+      id: "genotype",
+      label: "Genotype",
+      type: "select",
+      placeholder: "",
+      options: ["AA", "AS", "SS", "AC", "SC", "CC"],
+      optional: false,
+    },
+    {
+      id: "numOfCurrentDependants",
+      label: "Number of Current Dependent",
+      type: "number",
+      placeholder: "",
+      optional: false,
+    },
+
+    {
+      id: "cardType",
+      label: "Card Type",
+      type: "select",
+      placeholder: "",
+      options: ["Identification Card Only", "Identification/Smart Card"],
+      optional: false,
+    },
+    {
+      id: "password",
+      label: "Password",
+      type: "password",
+      placeholder: "Minimum 8 characters",
+      optional: false,
+    },
+  ];
+
+  // build fields dynamically: include cardSubType only when needed
+  const formFields = [...baseFields];
+  if (formData.cardType === "Identification/Smart Card") {
+    formFields.splice(formFields.length - 1, 0, {
+      id: "cardSubType",
+      label: "Card Variant",
+      type: "select",
+      placeholder: "",
+      options: [
+        "MC DEBIT (NGN) STANDARD PAYPASS",
+        "VISA DEBIT (NGN) STD",
+        "VERVE DEBIT (NGN) STD",
+      ],
+      optional: false,
+    });
+  }
+
+  const isNextDisabled = formFields.some(
+    (field) => !formData[field.id] && !field.optional
+  );
+
+  return (
+    <div className="pt-[8rem]">
+      <p className="font-[800] mb-[1rem] text-center">
+        Indigene Enrollment Form
+      </p>
+      <div className="bg-white custom flex flex-col gap-y-[2rem] rounded-[1rem] mx-auto p-[2.5rem] w-[45rem] sm:w-auto">
+        <FormGenerator
+          fields={formFields}
+          formData={formData}
+          setFormData={setFormData}
+        />
+
+        {/* Privacy Policy Agreement Section */}
+        <div className="space-y-4">
+          <div className="flex items-start space-x-3">
+            <input
+              type="checkbox"
+              id="termsAgreement"
+              checked={agreedToTerms}
+              onChange={(e) => setAgreedToTerms(e.target.checked)}
+              className="mt-1 h-4 w-4 text-[#002E20] focus:ring-[#002E20] border-gray-300 rounded"
+            />
+            <label
+              htmlFor="termsAgreement"
+              className="text-[1.2rem] leading-relaxed"
+            >
+              By checking this box and clicking "Submit" to complete your
+              registration, I agree to{" "}
+              <Link
+                href=""
+                className="text-[#002E20] font-semibold hover:underline"
+              >
+                ọ́ffà-Nimi's Terms of Use
+              </Link>{" "}
+              and{" "}
+              <Link
+                href=""
+                className="text-[#002E20] font-semibold hover:underline"
+              >
+                Privacy Policy.
+              </Link>
+            </label>
+          </div>
+        </div>
 
         <div className="flex justify-between">
           <Button
@@ -572,7 +838,7 @@ const FourthStep = (props) => {
             Back
           </Button>
 
-          <Progressbar text={"4 / 4"} percent={100} />
+          <Progressbar text={"5 / 5"} percent={100} />
 
           <Button
             className="bg-[#002E20] px-[3.5rem] py-[2rem] hover:bg-[#B0FFAB] hover:text-[#002E20] rounded-[.5rem] text-[#C8FFC4] font-[700]"
@@ -582,9 +848,13 @@ const FourthStep = (props) => {
                 numOfCurrentDependants: +formData.numOfCurrentDependants,
                 employmentStatus: formData.employmentStatus,
                 nin: NIN,
+                cardType:
+                  formData.cardType === "Identification/Smart Card"
+                    ? formData.cardSubType
+                    : formData.cardType,
               })
             }
-            disabled={isNextDisabled}
+            disabled={isNextDisabled || !agreedToTerms}
           >
             Submit
             {loading && (

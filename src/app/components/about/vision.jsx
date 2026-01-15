@@ -5,7 +5,7 @@ const Vision = () => {
   const content = {
     title: "Our Vision",
     paragraph:
-      "To empower ọ́ffà indigenes by providing a secure, digital identity system that strengthens the community, improves public services, & promotes transparency in governance.",
+      "To empower Offa indigenes by providing a secure digital identity system that strenghtens the community, improves public services and promote transparency in governance.",
     btnText: "Help Shape the Future",
     image: "/about/unite.png",
     containerStyle: "flex-row-reverse",
