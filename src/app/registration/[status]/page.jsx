@@ -722,7 +722,7 @@ const FourthStep = (props) => {
 const FifthStep = (props) => {
   const { setStep, setFormData, formData, CreateUser, loading, NIN } = props;
   const [agreedToTerms, setAgreedToTerms] = useState(false);
-  const formFields = [
+  const baseFields = [
     {
       id: "bloodGroup",
       label: "Blood Group",
@@ -752,11 +752,7 @@ const FifthStep = (props) => {
       label: "Card Type",
       type: "select",
       placeholder: "",
-      options: [
-        "MC DEBIT (NGN) STANDARD PAYPASS",
-        "VISA DEBIT (NGN) STD",
-        "VERVE DEBIT (NGN) STD",
-      ],
+      options: ["Identification Card Only", "Identification/Smart Card"],
       optional: false,
     },
     {
@@ -767,6 +763,24 @@ const FifthStep = (props) => {
       optional: false,
     },
   ];
+
+  // build fields dynamically: include cardSubType only when needed
+  const formFields = [...baseFields];
+  if (formData.cardType === "Identification/Smart Card") {
+    formFields.splice(formFields.length - 1, 0, {
+      id: "cardSubType",
+      label: "Card Variant",
+      type: "select",
+      placeholder: "",
+      options: [
+        "MC DEBIT (NGN) STANDARD PAYPASS",
+        "VISA DEBIT (NGN) STD",
+        "VERVE DEBIT (NGN) STD",
+      ],
+      optional: false,
+    });
+  }
+
   const isNextDisabled = formFields.some(
     (field) => !formData[field.id] && !field.optional
   );
@@ -834,6 +848,10 @@ const FifthStep = (props) => {
                 numOfCurrentDependants: +formData.numOfCurrentDependants,
                 employmentStatus: formData.employmentStatus,
                 nin: NIN,
+                cardType:
+                  formData.cardType === "Identification/Smart Card"
+                    ? formData.cardSubType
+                    : formData.cardType,
               })
             }
             disabled={isNextDisabled || !agreedToTerms}
