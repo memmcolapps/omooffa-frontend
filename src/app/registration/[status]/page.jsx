@@ -159,35 +159,6 @@ const Verify = ({ setStep, setNIN, NIN }) => {
 };
 
 const FirstStep = ({ setStep, setFormData, formData }) => {
-  const [countries, setCountries] = useState([]);
-  const [states, setStates] = useState([]);
-
-  useEffect(() => {
-    const allCountries = Country.getAllCountries().map(
-      (country) => country.name
-    );
-    setCountries(allCountries.sort());
-  }, []);
-
-  useEffect(() => {
-    if (formData.countryOfResidence) {
-      const countryObj = Country.getAllCountries().find(
-        (country) => country.name === formData.countryOfResidence
-      );
-
-      if (countryObj) {
-        const countryStates = State.getStatesOfCountry(countryObj.isoCode).map(
-          (state) => state.name
-        );
-        setStates(countryStates.sort());
-      } else {
-        setStates([]);
-      }
-    } else {
-      setStates([]);
-    }
-  }, [formData.countryOfResidence]);
-
   const formFields = [
     {
       id: "title",
@@ -219,41 +190,32 @@ const FirstStep = ({ setStep, setFormData, formData }) => {
       optional: true,
     },
     {
-      id: "countryOfResidence",
-      label: "Current Country of Residence",
-      type: "select",
-      placeholder: "Select Your Country",
-      options: countries,
+      id: "dob",
+      label: "Date of Birth",
+      type: "date",
+      placeholder: "Date",
       optional: false,
     },
     {
-      id: "stateOfResidence",
-      label: "Current State of Residence",
-      type: "select",
-      placeholder: "Enter Your State",
-      options: states,
-      optional: false,
-    },
-    {
-      id: "cityOfResidence",
-      label: "Current Town/City of Residence",
+      id: "placeOfBirth",
+      label: "Place of Birth",
       type: "text",
-      placeholder: "City",
+      placeholder: "Place",
       optional: false,
     },
     {
-      id: "localGovernmentAreaOfResidence",
-      label: "Current Local Govt. of Residence",
-      type: "text",
-      placeholder: "E.g Offa South",
+      id: "phoneNumber",
+      label: "Phone Number",
+      type: "number",
+      placeholder: "+2348035869013",
       optional: false,
     },
     {
-      id: "addressOfResidence",
-      label: "Current Address of Residence",
-      type: "text",
-      placeholder: "Address",
-      optional: false,
+      id: "secondPhoneNumber",
+      label: "Second Phone Number (Optional)",
+      type: "number",
+      placeholder: "+2348035869013",
+      optional: true,
     },
   ];
 
@@ -293,7 +255,7 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
     () => [
       {
         id: "wardName",
-        label: "Ward’s Name",
+        label: "Compound District Name",
         type: "select",
         placeholder: "",
         options: wards.map((ward) => ward),
@@ -307,66 +269,76 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
         options: compounds.map((compound) => compound),
         optional: false,
       },
-
       {
-        id: "email",
-        label: "Current E-mail Address (Optional)",
-        type: "text",
-        placeholder: "Email",
+        id: "parentNin",
+        label: "Parent's NIN (Optional/Ignore if over 18)",
+        type: "number",
+        placeholder: "Parent's NIN",
         optional: true,
       },
       {
-        id: "emergencyContactName",
-        label: "Emergency Contact Name",
+        id: "fathersName",
+        label: "Father's Name",
         type: "text",
-        placeholder: "Emergency Contact",
+        placeholder: "Father's Name",
         optional: false,
       },
       {
-        id: "emergencyContactNumber",
-        label: "Emergency Contact Phone Number",
+        id: "fathersPlaceOfBirth",
+        label: "Father's Place of Birth",
+        type: "text",
+        placeholder: "Father's Place of Birth",
+        optional: false,
+      },
+      {
+        id: "fathersPhoneNumber",
+        label: "Father's Phone Number (Optional)",
         type: "number",
-        placeholder: "E.g +2348037117892",
+        placeholder: "Father's Phone Number",
+        optional: true,
+      },
+      {
+        id: "mothersName",
+        label: "Mother's Name",
+        type: "text",
+        placeholder: "Mother's Name",
         optional: false,
       },
       {
-        id: "employmentStatus",
-        label: "Employment Status",
-        type: "select",
-        placeholder: "",
-        options: [
-          "Employed",
-          "Self-employed",
-          "Part-time",
-          "Contract",
-          "Unemployed",
-          "Student",
-          "Retired",
-        ],
+        id: "mothersPlaceOfBirth",
+        label: "Mother's Place of Birth",
+        type: "text",
+        placeholder: "Mother's Place of Birth",
         optional: false,
       },
       {
-        id: "occupation",
-        label: "Profession",
-        type: "select",
-        placeholder: "",
-        options: [
-          "BANKING",
-          "TELECOMMUNICATION",
-          "OIL AND GAS",
-          "INFORMATION TECHNOLOGY",
-          "LEGAL AFFAIRS",
-          "AIRLINES",
-          "ENGINEERING",
-          "MANUFACTURING",
-          "ACADEMIC",
-          "TRADING",
-          "MEDICAL",
-          "CIVIL SERVICE",
-          "MILITARY",
-          "OTHERS",
-        ],
+        id: "mothersCompound",
+        label: "Mother's Compound",
+        type: "text",
+        placeholder: "Mother's Compound",
         optional: false,
+      },
+      {
+        id: "mothersHomeTown",
+        label: "Mother's Home Town",
+        type: "text",
+        placeholder: "Mother's Home Town",
+        optional: false,
+      },
+      {
+        id: "mothersFatherName",
+        label: "Mother's Father Name",
+        type: "text",
+        placeholder: "Mother's Father Name",
+        optional: false,
+      },
+
+      {
+        id: "mothersPhoneNumber",
+        label: "Mother's Phone Number (Optional)",
+        type: "number",
+        placeholder: "Mother's Phone Number",
+        optional: true,
       },
     ],
     [formData]
@@ -412,13 +384,91 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
 };
 
 const ThirdStep = ({ setStep, setFormData, formData }) => {
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+
+  useEffect(() => {
+    const allCountries = Country.getAllCountries().map(
+      (country) => country.name
+    );
+    setCountries(allCountries.sort());
+  }, []);
+
+  useEffect(() => {
+    if (formData.countryOfResidence) {
+      const countryObj = Country.getAllCountries().find(
+        (country) => country.name === formData.countryOfResidence
+      );
+
+      if (countryObj) {
+        const countryStates = State.getStatesOfCountry(countryObj.isoCode).map(
+          (state) => state.name
+        );
+        setStates(countryStates.sort());
+      } else {
+        setStates([]);
+      }
+    } else {
+      setStates([]);
+    }
+  }, [formData.countryOfResidence]);
   const formFields = [
     {
-      id: "maritalStatus",
-      label: "Marital Status",
+      id: "countryOfResidence",
+      label: "Current Country of Residence",
       type: "select",
-      placeholder: "",
-      options: ["Single", "Married", "Widowed", "Divorced"],
+      placeholder: "Select Your Country",
+      options: countries,
+      optional: false,
+    },
+    {
+      id: "stateOfResidence",
+      label: "Current State of Residence",
+      type: "select",
+      placeholder: "Enter Your State",
+      options: states,
+      optional: false,
+    },
+    {
+      id: "cityOfResidence",
+      label: "Current Town/City of Residence",
+      type: "text",
+      placeholder: "City",
+      optional: false,
+    },
+    {
+      id: "localGovernmentAreaOfResidence",
+      label: "Current Local Govt. of Residence",
+      type: "text",
+      placeholder: "E.g Offa South",
+      optional: false,
+    },
+    {
+      id: "addressOfResidence",
+      label: "Current Address of Residence",
+      type: "text",
+      placeholder: "Address",
+      optional: false,
+    },
+    {
+      id: "email",
+      label: "Current E-mail Address (Optional)",
+      type: "text",
+      placeholder: "Email",
+      optional: true,
+    },
+    {
+      id: "emergencyContactName",
+      label: "Emergency Contact Name",
+      type: "text",
+      placeholder: "Emergency Contact",
+      optional: false,
+    },
+    {
+      id: "emergencyContactNumber",
+      label: "Emergency Contact Phone Number",
+      type: "number",
+      placeholder: "E.g +2348037117892",
       optional: false,
     },
     {
@@ -434,42 +484,6 @@ const ThirdStep = ({ setStep, setFormData, formData }) => {
         "By Residence",
         "By Marriage",
       ],
-      optional: false,
-    },
-    {
-      id: "adoptedParentName",
-      label: "Name of Adoptee (Optional/Ignore if not adopted)",
-      type: "text",
-      placeholder: "",
-      optional: true,
-    },
-    {
-      id: "adoptedParentCompound",
-      label: "Adoptee’s Compound (Optional/Ignore if not adopted)",
-      type: "text",
-      placeholder: "",
-      optional: true,
-    },
-    {
-      id: "adoptedParentWard",
-      label: "Adoptee’s Ward (Optional/Ignore if not adopted)",
-      type: "text",
-      placeholder: "",
-      optional: true,
-    },
-    {
-      id: "numOfCurrentDependants",
-      label: "Number of Current Dependent",
-      type: "number",
-      placeholder: "",
-      optional: false,
-    },
-    {
-      id: "genotype",
-      label: "Genotype",
-      type: "select",
-      placeholder: "",
-      options: ["AA", "AS", "SS", "AC", "SC", "CC"],
       optional: false,
     },
   ];
@@ -517,18 +531,64 @@ const FourthStep = (props) => {
   const { setStep, setFormData, formData, CreateUser, loading, NIN } = props;
   const formFields = [
     {
-      id: "phoneNumber",
-      label: "Phone Number",
-      type: "number",
-      placeholder: "+2348035869013",
+      id: "adoptedParentName",
+      label: "Name of Adoptee (Optional/Ignore if not adopted)",
+      type: "text",
+      placeholder: "",
+      optional: true,
+    },
+    {
+      id: "adoptedParentCompound",
+      label: "Adoptee’s Compound (Optional/Ignore if not adopted)",
+      type: "text",
+      placeholder: "",
+      optional: true,
+    },
+    {
+      id: "adoptedParentWard",
+      label: "Adoptee’s District Name (Optional/Ignore if not adopted)",
+      type: "text",
+      placeholder: "",
+      optional: true,
+    },
+    {
+      id: "employmentStatus",
+      label: "Employment Status",
+      type: "select",
+      placeholder: "",
+      options: [
+        "Employed",
+        "Self-employed",
+        "Part-time",
+        "Contract",
+        "Unemployed",
+        "Student",
+        "Retired",
+      ],
       optional: false,
     },
     {
-      id: "secondPhoneNumber",
-      label: "Second Phone Number (Optional)",
-      type: "number",
-      placeholder: "+2348035869013",
-      optional: true,
+      id: "occupation",
+      label: "Profession",
+      type: "select",
+      placeholder: "",
+      options: [
+        "BANKING",
+        "TELECOMMUNICATION",
+        "OIL AND GAS",
+        "INFORMATION TECHNOLOGY",
+        "LEGAL AFFAIRS",
+        "AIRLINES",
+        "ENGINEERING",
+        "MANUFACTURING",
+        "ACADEMIC",
+        "TRADING",
+        "MEDICAL",
+        "CIVIL SERVICE",
+        "MILITARY",
+        "OTHERS",
+      ],
+      optional: false,
     },
     {
       id: "physicalChallenges",
@@ -539,22 +599,11 @@ const FourthStep = (props) => {
       optional: false,
     },
     {
-      id: "cardType",
-      label: "Card Type",
+      id: "maritalStatus",
+      label: "Marital Status",
       type: "select",
       placeholder: "",
-      options: [
-        "MC DEBIT (NGN) STANDARD PAYPASS",
-        "VISA DEBIT (NGN) STD",
-        "VERVE DEBIT (NGN) STD",
-      ],
-      optional: false,
-    },
-    {
-      id: "password",
-      label: "Password",
-      type: "password",
-      placeholder: "Minimum 8 characters",
+      options: ["Single", "Married", "Widowed", "Divorced"],
       optional: false,
     },
     {
@@ -571,14 +620,6 @@ const FourthStep = (props) => {
       type: "select",
       placeholder: "",
       options: ["Male", "Female"],
-      optional: false,
-    },
-    {
-      id: "bloodGroup",
-      label: "Blood Group",
-      type: "select",
-      placeholder: "",
-      options: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
       optional: false,
     },
   ];
@@ -683,89 +724,47 @@ const FifthStep = (props) => {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const formFields = [
     {
-      id: "dob",
-      label: "Date of Birth",
-      type: "date",
-      placeholder: "Date",
+      id: "bloodGroup",
+      label: "Blood Group",
+      type: "select",
+      placeholder: "",
+      options: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
       optional: false,
     },
     {
-      id: "placeOfBirth",
-      label: "Place of Birth",
-      type: "text",
-      placeholder: "Place",
+      id: "genotype",
+      label: "Genotype",
+      type: "select",
+      placeholder: "",
+      options: ["AA", "AS", "SS", "AC", "SC", "CC"],
       optional: false,
     },
     {
-      id: "parentNin",
-      label: "Parent's NIN (Optional/Ignore if over 18)",
+      id: "numOfCurrentDependants",
+      label: "Number of Current Dependent",
       type: "number",
-      placeholder: "Parent's NIN",
-      optional: true,
-    },
-    {
-      id: "fathersName",
-      label: "Father's Name",
-      type: "text",
-      placeholder: "Father's Name",
-      optional: false,
-    },
-    {
-      id: "fathersPlaceOfBirth",
-      label: "Father's Place of Birth",
-      type: "text",
-      placeholder: "Father's Place of Birth",
-      optional: false,
-    },
-    {
-      id: "fathersPhoneNumber",
-      label: "Father's Phone Number (Optional)",
-      type: "number",
-      placeholder: "Father's Phone Number",
-      optional: true,
-    },
-    {
-      id: "mothersName",
-      label: "Mother's Name",
-      type: "text",
-      placeholder: "Mother's Name",
-      optional: false,
-    },
-    {
-      id: "mothersPlaceOfBirth",
-      label: "Mother's Place of Birth",
-      type: "text",
-      placeholder: "Mother's Place of Birth",
-      optional: false,
-    },
-    {
-      id: "mothersCompound",
-      label: "Mother's Compound",
-      type: "text",
-      placeholder: "Mother's Compound",
-      optional: false,
-    },
-    {
-      id: "mothersHomeTown",
-      label: "Mother's Home Town",
-      type: "text",
-      placeholder: "Mother's Home Town",
-      optional: false,
-    },
-    {
-      id: "mothersFatherName",
-      label: "Mother's Father Name",
-      type: "text",
-      placeholder: "Mother's Father Name",
+      placeholder: "",
       optional: false,
     },
 
     {
-      id: "mothersPhoneNumber",
-      label: "Mother's Phone Number (Optional)",
-      type: "number",
-      placeholder: "Mother's Phone Number",
-      optional: true,
+      id: "cardType",
+      label: "Card Type",
+      type: "select",
+      placeholder: "",
+      options: [
+        "MC DEBIT (NGN) STANDARD PAYPASS",
+        "VISA DEBIT (NGN) STD",
+        "VERVE DEBIT (NGN) STD",
+      ],
+      optional: false,
+    },
+    {
+      id: "password",
+      label: "Password",
+      type: "password",
+      placeholder: "Minimum 8 characters",
+      optional: false,
     },
   ];
   const isNextDisabled = formFields.some(
