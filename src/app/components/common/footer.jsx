@@ -9,20 +9,28 @@ const Footer = () => {
   const pathName = usePathname();
   const social_icon = [
     {
-      link: "",
+      link: "https://x.com/OmoOfaNiMi",
       img: "/common/x.svg",
     },
     {
-      link: "",
+      link: "https://wa.me/2349162107366",
       img: "/common/wa.svg",
     },
     {
-      link: "",
+      link: "https://www.instagram.com/omooffa_nimi?igsh=MW9hNXJ4ZWFmenJmcA==&utm_source=ig_contact_invite",
       img: "/common/ig.svg",
     },
     {
-      link: "",
-      img: "/common/in.svg",
+      link: "https://www.facebook.com/omooffanimi",
+      img: "/common/fb.png",
+    },
+    {
+      link: "https://www.tiktok.com/@omo.offa.ni.mi?_r=1&_t=ZS-92qWVflqKFp",
+      img: "/common/tk.png",
+    },
+    {
+      link: "https://www.threads.com/@omooffa_nimi",
+      img: "/common/th.png",
     },
   ];
   return (
