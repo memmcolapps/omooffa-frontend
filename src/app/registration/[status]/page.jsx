@@ -259,7 +259,7 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
         type: "select",
         placeholder: "",
         options: wards.map((ward) => ward),
-        optional: false,
+        optional: true,
       },
       {
         id: "compoundName",
@@ -267,7 +267,7 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
         type: "select",
         placeholder: "",
         options: compounds.map((compound) => compound),
-        optional: false,
+        optional: true,
       },
       {
         id: "parentNin",
