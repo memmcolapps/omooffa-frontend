@@ -59,10 +59,10 @@ const Footer = () => {
                           info@omooffanimi.com{" "}
                         </li>
                         <li className="p_ii text-[#A5C3AF]">
-                          +234 809 999 1689{" "}
+                          +234 916 210 7366{" "}
                         </li>
                         <li className="p_ii text-[#A5C3AF]">
-                          +234 805 312 1071{" "}
+                          +234 902 864 0992{" "}
                         </li>
                       </ul>
                     </div>
@@ -141,7 +141,7 @@ const Footer = () => {
                     </div>
                   </div>
 
-                  <div className="flex gap-[2rem] mt-[2rem] sm:mt-[-2rem] w-fit">
+                  <div className="flex flex-wrap gap-[2rem] sm:gap-[1.5rem] mt-[2rem] sm:mt-[-2rem] w-fit">
                     {social_icon.map((icon, i) => (
                       <SocialIcon key={i} icon={icon} />
                     ))}
