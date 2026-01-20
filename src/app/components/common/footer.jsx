@@ -141,7 +141,7 @@ const Footer = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-[2rem] sm:gap-[1.5rem] mt-[2rem] sm:mt-[-2rem] w-fit">
+                  <div className="flex flex-wrap gap-[2rem] sm:gap-x-[1.2rem] sm:gap-y-[1rem] mt-[2rem] sm:mt-[-2rem] w-fit sm:max-w-[20rem]">
                     {social_icon.map((icon, i) => (
                       <SocialIcon key={i} icon={icon} />
                     ))}
@@ -161,7 +161,13 @@ export default Footer;
 const SocialIcon = ({ icon }) => {
   return (
     <Link href={icon.link}>
-      <Image src={icon.img} width={20} height={20} alt="social icon" />
+      <Image
+        src={icon.img}
+        width={20}
+        height={20}
+        alt="social icon"
+        className="sm:w-[1.8rem] sm:h-[1.8rem]"
+      />
     </Link>
   );
 };
