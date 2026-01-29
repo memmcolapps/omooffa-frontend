@@ -12,9 +12,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Progressbar from "../../components/ui/progressbar";
 import { Country, State } from "country-state-city";
-import { wards, compounds } from "../../utilis/wards";
+import { wards } from "../../utilis/wards";
 import { popularProfessions } from "../../utilis/professions";
 import { UploadDropzone } from "../../../utils/uploadthing";
+import useCompounds from "../../hooks/useCompounds";
 
 const Register = () => {
   const param = useParams();
@@ -22,7 +23,7 @@ const Register = () => {
   const [NIN, setNIN] = useState(null);
   const { CreateUser, loading, data } = UseCreateUser();
   const [step, setStep] = useState(
-    status === "DECEASED" || status === "NONIN" ? 1 : 0
+    status === "DECEASED" || status === "NONIN" ? 1 : 0,
   );
   const [formData, setFormData] = useState({
     lastName: "",
@@ -220,7 +221,7 @@ const FirstStep = ({ setStep, setFormData, formData }) => {
   ];
 
   const isNextDisabled = formFields.some(
-    (field) => !formData[field.id] && !field.optional
+    (field) => !formData[field.id] && !field.optional,
   );
 
   return (
@@ -251,6 +252,13 @@ const FirstStep = ({ setStep, setFormData, formData }) => {
 };
 
 const SecondStep = ({ setStep, setFormData, formData }) => {
+  const { compounds, fetchCompounds } = useCompounds();
+
+  useEffect(() => {
+    console.log("fetching compounds");
+    fetchCompounds();
+    console.log(compounds);
+  }, [fetchCompounds]);
   const formFields = useMemo(
     () => [
       {
@@ -266,7 +274,7 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
         label: "Compound’s Name",
         type: "select",
         placeholder: "",
-        options: compounds.map((compound) => compound),
+        options: compounds.map((compound) => compound.name),
         optional: true,
       },
       {
@@ -341,11 +349,11 @@ const SecondStep = ({ setStep, setFormData, formData }) => {
         optional: true,
       },
     ],
-    [formData]
+    [formData, compounds],
   );
 
   const isNextDisabled = formFields.some(
-    (field) => !formData[field.id] && !field.optional
+    (field) => !formData[field.id] && !field.optional,
   );
 
   return (
@@ -389,7 +397,7 @@ const ThirdStep = ({ setStep, setFormData, formData }) => {
 
   useEffect(() => {
     const allCountries = Country.getAllCountries().map(
-      (country) => country.name
+      (country) => country.name,
     );
     setCountries(allCountries.sort());
   }, []);
@@ -397,12 +405,12 @@ const ThirdStep = ({ setStep, setFormData, formData }) => {
   useEffect(() => {
     if (formData.countryOfResidence) {
       const countryObj = Country.getAllCountries().find(
-        (country) => country.name === formData.countryOfResidence
+        (country) => country.name === formData.countryOfResidence,
       );
 
       if (countryObj) {
         const countryStates = State.getStatesOfCountry(countryObj.isoCode).map(
-          (state) => state.name
+          (state) => state.name,
         );
         setStates(countryStates.sort());
       } else {
@@ -489,7 +497,7 @@ const ThirdStep = ({ setStep, setFormData, formData }) => {
   ];
 
   const isNextDisabled = formFields.some(
-    (field) => !formData[field.id] && !field.optional
+    (field) => !formData[field.id] && !field.optional,
   );
 
   return (
@@ -782,7 +790,7 @@ const FifthStep = (props) => {
   }
 
   const isNextDisabled = formFields.some(
-    (field) => !formData[field.id] && !field.optional
+    (field) => !formData[field.id] && !field.optional,
   );
 
   return (
@@ -877,7 +885,7 @@ const Success = ({ data }) => {
       },
       (err) => {
         setCopySuccess("Could not copy"); // Failure
-      }
+      },
     );
   };
   return (
