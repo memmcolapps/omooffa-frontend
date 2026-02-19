@@ -64,7 +64,7 @@ const Register = () => {
     mothersFatherName: "",
     mothersCompound: "",
     mothersPhoneNumber: "",
-    religon: "",
+    religion: "",
     sex: "",
     bloodGroup: "",
     secondPhoneNumber: null,
@@ -615,7 +615,7 @@ const FourthStep = (props) => {
       optional: false,
     },
     {
-      id: "religon",
+      id: "religion",
       label: "Religion",
       type: "select",
       placeholder: "",
