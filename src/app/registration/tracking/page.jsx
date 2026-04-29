@@ -343,7 +343,7 @@ const OffaNimiForm = ({ data }) => {
                 content={data.adoptedParentCompound ?? "Nil"}
               />
 
-              <Info title={"Genotype"} content={data.genotype} />
+              <Info title={"Genotype"} content={data.genotype ?? "Nil"} />
               <Info
                 title={"Religion"}
                 capitalize={true}
@@ -508,7 +508,7 @@ const OffaNimiForm = ({ data }) => {
                 capitalize={true}
                 content={data.adoptedParentWard ?? "Nil"}
               />
-              <Info title={"Genotype"} content={data.genotype} />
+              <Info title={"Genotype"} content={data.genotype ?? "Nil"} />
               <Info
                 title={"Religion"}
                 capitalize={true}
