@@ -21,6 +21,7 @@ const UseCreateUser = () => {
       if (response.ok) {
         setData(data);
       } else {
+        toast.error(data?.error || data?.message || "User creation failed");
         console.error("User creation failed:", data);
       }
     } catch (error) {
