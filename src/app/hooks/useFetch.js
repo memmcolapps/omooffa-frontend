@@ -9,9 +9,13 @@ const useFetchAPI = () => {
       );
 
       if (!response.ok) {
-        let error = await response.json();
-        error = error.error;
-        throw new Error(`Error: ${response.status} - ${error}`);
+        const error = await response.json().catch(() => ({}));
+        const errorMessage =
+          error.error ||
+          error.message ||
+          error.errors?.map((item) => item.message).join(", ") ||
+          "Request failed";
+        throw new Error(`Error: ${response.status} - ${errorMessage}`);
       }
 
       return response;
