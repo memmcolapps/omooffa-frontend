@@ -1,4 +1,11 @@
-export const wards = ["Asalofa", "Balogun", "Essa", "Ojomu", "Shawo"];
+export const wards = [
+  "Asalofa",
+  "Balogun",
+  "Essa",
+  "Ojomu",
+  "Shawo",
+  "Non-Indigenous",
+];
 
 export const compounds = [
   "Aade",
